@@ -80,6 +80,10 @@ A double in the range `0..1`.
 
 How much it weighs, in kilograms.
 
+#### `equipment.over_hair`
+
+If `true`, draw the item after the hair is drawn instead of before.
+
 ### `on_hit(hit)`
 
 Called when the entity wearing the item is hit by something.
