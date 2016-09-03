@@ -1,4 +1,0 @@
- - Make menus scrollable when there are too many items
- - Fix pathfinding and collisions
- - Make hairstyles grayscale, and change the hue for color per-entity.
- - Add a flag for equipment that should be drawn over hair.
