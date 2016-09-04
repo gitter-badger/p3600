@@ -29,6 +29,12 @@ Run `make`.
 You can run `make LUAJIT=cp` to copy the lua files instead of compiling them.
 Compiling the files is recommended because the output is smaller.
 
+### If You're On Windows&trade;
+Download a pre-built version from the
+[releases](https://github.com/bcnjr5/p3600/releases) page.
+Windows is not a valid development platform, so you will never have a
+reason to build from source anyway.
+
 
 What's With The Name?
 ---------------------
