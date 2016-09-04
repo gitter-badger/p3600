@@ -8,9 +8,7 @@ return function()
       }
     end,
 
-    back = function()
-      p3600.pop_state()
-    end,
+    back = p3600.pop_state,
 
     {
       label = 'New Game',
@@ -24,9 +22,7 @@ return function()
 
     {
       label = 'Exit',
-      action = function()
-        p3600.pop_state()
-      end,
+      action = p3600.pop_state,
     },
   }
 

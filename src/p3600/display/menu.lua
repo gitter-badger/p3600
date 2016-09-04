@@ -5,6 +5,8 @@ return function(items)
   love.keyboard.setTextInput(false)
 
   p3600.state = {
+    top_entry = 1,
+    start_at = items.start_row or 1,
     selection  = 1,
     menu_items = items,
     changed = true,
@@ -47,14 +49,24 @@ return function(items)
       ['up'] = function()
         if (p3600.state.selection > 1) then
           local prev_selection = p3600.state.selection
+          local prev_top = p3600.state.top_entry
+
           p3600.state.changed = true
+
+          if (p3600.state.selection <= p3600.state.top_entry) then
+            p3600.state.top_entry = p3600.state.top_entry - 1
+          end
+
           repeat
             p3600.state.selection = p3600.state.selection - 1
           until ((type(p3600.state.menu_items[p3600.state.selection])
                   == 'table') or (p3600.state.selection < 1))
+
           if (p3600.state.selection < 1) then
-              p3600.state.changed = false
-              p3600.state.selection = prev_selection
+            p3600.state.changed = not (p3600.state.top_entry == prev_top)
+            p3600.state.selection = prev_selection
+          elseif (p3600.state.selection < p3600.state.top_entry) then
+            p3600.state.top_entry = p3600.state.selection
           end
         end
       end,
@@ -62,15 +74,32 @@ return function(items)
       ['down'] = function()
         if (p3600.state.selection < #p3600.state.menu_items) then
           local prev_selection = p3600.state.selection
+          local prev_top = p3600.state.top_entry
+
           p3600.state.changed = true
+
+          if
+           (p3600.state.selection >
+            (p3600.state.top_entry + (34 - p3600.state.start_at)))
+          then
+            p3600.state.top_entry = p3600.state.top_entry + 1
+          end
+
           repeat
             p3600.state.selection = p3600.state.selection + 1
           until ((type(p3600.state.menu_items[p3600.state.selection])
                   == 'table') or
                  (p3600.state.selection > #p3600.state.menu_items))
+
           if (p3600.state.selection > #p3600.state.menu_items) then
-              p3600.state.changed = false
-              p3600.state.selection = prev_selection
+            p3600.state.changed = not (p3600.state.top_entry == prev_top)
+            p3600.state.selection = prev_selection
+          elseif
+           (p3600.state.selection >
+            (p3600.state.top_entry + (34 - p3600.state.start_at)))
+          then
+            p3600.state.top_entry = p3600.state.selection
+                                    - (34 - p3600.state.start_at)
           end
         end
       end,
@@ -107,35 +136,56 @@ return function(items)
     if (p3600.state.changed) then
       love.graphics.clear()
 
+      if not (p3600.state.top_entry == 1) then
+        love.graphics.setColor(200, 200, 200, 200)
+        p3600.state._p(p3600.state.start_at, 4, '^^^')
+      end
+
       love.graphics.setColor(255, 255, 255, 255)
-      for i, e in ipairs(p3600.state.menu_items) do
-        if not (type(e) == 'table') then
-          love.graphics.setColor(200, 200, 200, 255)
-          if (type(e) == 'function') then
-            p3600.state._p(16 + i, 1, e())
-          else
-            p3600.state._p(16 + i, 1, e)
+
+      do
+        local offset = 0
+
+        for i = p3600.state.top_entry, #p3600.state.menu_items, 1 do
+          if (offset >= (36 - (p3600.state.start_at + 1))) then
+            love.graphics.setColor(200, 200, 200, 200)
+            p3600.state._p(36, 4, 'vvv')
+            love.graphics.setColor(255, 255, 255, 255)
+            break
           end
-          love.graphics.setColor(255, 255, 255, 255)
-        else
-          if (i == p3600.state.selection) then
-            love.graphics.setColor(255, 0, 0, 255)
-            if (type(e.label) == 'function') then
-              p3600.state._p(16 + i, 4, e.label())
+
+          local e = p3600.state.menu_items[i]
+
+          if not (type(e) == 'table') then
+            love.graphics.setColor(200, 200, 200, 255)
+            if (type(e) == 'function') then
+              p3600.state._p(p3600.state.start_at + 1 + offset, 1, e())
             else
-              p3600.state._p(16 + i, 4, e.label)
+              p3600.state._p(p3600.state.start_at + 1 + offset, 1, e)
             end
             love.graphics.setColor(255, 255, 255, 255)
-
-            love.graphics.draw(p3600.state._menu_cursor, 2 * 16,
-                               (16 + i) * 16)
           else
-            if (type(e.label) == 'function') then
-              p3600.state._p(16 + i, 4, e.label())
+            if (i == p3600.state.selection) then
+              love.graphics.setColor(255, 0, 0, 255)
+              if (type(e.label) == 'function') then
+                p3600.state._p(p3600.state.start_at + 1 + offset, 4, e.label())
+              else
+                p3600.state._p(p3600.state.start_at + 1 + offset, 4, e.label)
+              end
+              love.graphics.setColor(255, 255, 255, 255)
+
+              love.graphics.draw(p3600.state._menu_cursor, 2 * 16,
+                                 (p3600.state.start_at + 1 + offset) * 16)
             else
-              p3600.state._p(16 + i, 4, e.label)
+              if (type(e.label) == 'function') then
+                p3600.state._p(p3600.state.start_at + 1 + offset, 4, e.label())
+              else
+                p3600.state._p(p3600.state.start_at + 1 + offset, 4, e.label)
+              end
             end
           end
+
+          offset = offset + 1
         end
       end
 
