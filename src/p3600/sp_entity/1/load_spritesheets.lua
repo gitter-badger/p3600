@@ -1,10 +1,5 @@
-require 'p3600'
-
-return function()
-  p3600.gstate.entity[1].spritesheets = {
-    _no_save = true,
-    [0] = love.graphics.newImage('/data/spritesheet/se/1/0.tga'),
-  }
-
-  return p3600.gstate.entity[1].spritesheets[0]
+return function(e)
+  local n = '/data/spritesheet/se/1/0/'
+  e.spritesheet.body = love.graphics.newImage(n..'body.tga')
+  e.spritesheet.hair = love.graphics.newImage(n..'hair.tga')
 end

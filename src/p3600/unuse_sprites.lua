@@ -8,11 +8,6 @@ return function()
       if (p3600.sprite_refs[eid] < 1) then
         p3600.sprite_refs[eid] = nil
         p3600.gstate.entity[eid].spritesheet = nil
-        p3600.gstate.entity[eid].equip_sprites = nil
-        p3600.gstate.entity[eid].sprite_quad = nil
-        if (p3600.gstate.entity[eid].special) then
-          require('p3600.sp_entity.'..eid..'.unload_spritesheets')()
-        end
       end
     end
   end

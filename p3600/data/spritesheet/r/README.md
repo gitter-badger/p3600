@@ -30,7 +30,9 @@ Here is what the directories mean:
 | `/hair/2`           | &emsp;Female variations                                                                      |
 | `/hair/3`           | &emsp;Hermaphrodite variations                                                               |
 | `/p`                | Default player skin for the race. (also naked, clothes are seperate)                         |
-| `/p/0.tga`          | &emsp;Unsexed                                                                                |
-| `/p/1.tga`          | &emsp;Male                                                                                   |
-| `/p/2.tga`          | &emsp;Female                                                                                 |
-| `/p/3.tga`          | &emsp;Hermaphrodite                                                                          |
+| `/p/0`              | &emsp;Unsexed                                                                                |
+| `/p/0/body.tga`     | &emsp;&emsp;Unsexed body (same for 1, 2, and 3)                                              |
+| `/p/0/hair.tga`     | &emsp;&emsp;Unsexed hair (same for 1, 2, and 3)                                              |
+| `/p/1`              | &emsp;Male                                                                                   |
+| `/p/2`              | &emsp;Female                                                                                 |
+| `/p/3`              | &emsp;Hermaphrodite                                                                          |

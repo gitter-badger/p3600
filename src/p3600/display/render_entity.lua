@@ -16,18 +16,29 @@ return function(entity)
     end
   end
 
-  entity.sprite_quad:setViewport(qx * 32, qy * 32, 32, 32)
-  love.graphics.draw(entity.spritesheet, entity.sprite_quad,
+  entity.spritesheet.quad:setViewport(qx * 32, qy * 32, 32, 32)
+
+  love.graphics.draw(entity.spritesheet.body, entity.spritesheet.quad,
                      math.floor((entity.pos.x - 1) * 32),
                      math.floor((entity.pos.y - 1) * 32))
 
-  if not (entity.equip_sprites == nil) then
-    for i, s in ipairs(entity.equip_sprites) do
-      if not (i == '_no_save') then
-        love.graphics.draw(s, entity.sprite_quad,
-                           math.floor((entity.pos.x - 1) * 32),
-                           math.floor((entity.pos.y - 1) * 32))
-      end
+  if not (entity.spritesheet.equip_under == nil) then
+    for i, s in ipairs(entity.spritesheet.equip_under) do
+      love.graphics.draw(s, entity.spritesheet.quad,
+                         math.floor((entity.pos.x - 1) * 32),
+                         math.floor((entity.pos.y - 1) * 32))
+    end
+  end
+
+  love.graphics.draw(entity.spritesheet.hair, entity.spritesheet.quad,
+                     math.floor((entity.pos.x - 1) * 32),
+                     math.floor((entity.pos.y - 1) * 32))
+
+  if not (entity.spritesheet.equip_over == nil) then
+    for i, s in ipairs(entity.spritesheet.equip_over) do
+      love.graphics.draw(s, entity.spritesheet.quad,
+                         math.floor((entity.pos.x - 1) * 32),
+                         math.floor((entity.pos.y - 1) * 32))
     end
   end
 end

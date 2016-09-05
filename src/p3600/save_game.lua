@@ -41,9 +41,16 @@ return function()
     love.filesystem.remove(save_name..'/data.lua.bak')
   end
 
-  if not (love.filesystem.exists(save_name..'/player.png')) then
+  if not (love.filesystem.exists(save_name..'/player/body.png')) then
+    love.filesystem.createDirectory(save_name..'/player')
     local dsn = '/data/spritesheet/r/'..p3600.gstate.entity[0].race..'/p/'..
-                p3600.gstate.entity[0].sex..'.tga'
-    love.image.newImageData(dsn):encode('png', save_name..'/skin.png')
+                p3600.gstate.entity[0].sex..'/body.tga'
+    love.image.newImageData(dsn):encode('png', save_name..'/player/body.png')
+  end
+
+  if not (love.filesystem.exists(save_name..'/player/hair.png')) then
+    local dsn = '/data/spritesheet/r/'..p3600.gstate.entity[0].race..'/p/'..
+                p3600.gstate.entity[0].sex..'/hair.tga'
+    love.image.newImageData(dsn):encode('png', save_name..'/player/hair.png')
   end
 end

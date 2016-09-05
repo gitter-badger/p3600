@@ -65,6 +65,7 @@ return function()
         p3600.gstate = {
           entity = {
             [0] = {
+              eid = 0,
               name = p3600.state.name,
               race = p3600.state.race,
               sex = p3600.state.sex,

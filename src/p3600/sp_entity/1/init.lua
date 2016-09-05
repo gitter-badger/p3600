@@ -1,4 +1,5 @@
 return {
+  eid = 1,
   special = true,
   persist = true,
 
