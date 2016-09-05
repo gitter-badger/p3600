@@ -1,5 +1,6 @@
 return {
   id = 'sao_armor',
+  name = "Saoirse's Armor",
   description = {
     "Saoirse's preferred \"armor\".",
     '',

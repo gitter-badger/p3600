@@ -22,7 +22,7 @@ return function()
         local setname = function(str)
           p3600.state.name = str
         end
-        require('p3600.display.text_input')(17, 10, setname, p3600.state.name,
+        require('p3600.display.text_input')(2, 10, setname, p3600.state.name,
                                             {r = 0, b = 0, g = 0})
       end,
     },

@@ -32,6 +32,22 @@ return function(eid, v, dt)
           path = v.following.prev.p
         else
           v.following.prev = nil
+          if
+           ((v.pos.x - math.floor(v.pos.x)) <
+            (math.floor(v.pos.x + 1) - v.pos.x))
+          then
+            v.pos.x = math.floor(v.pos.x)
+          else
+            v.pos.x = math.floor(v.pos.x) + 1
+          end
+          if
+           ((v.pos.y - math.floor(v.pos.y)) <
+            (math.floor(v.pos.y + 1) - v.pos.y))
+          then
+            v.pos.y = math.floor(v.pos.y)
+          else
+            v.pos.y = math.floor(v.pos.y) + 1
+          end
           goto tryfollow
         end
       else
@@ -52,8 +68,10 @@ return function(eid, v, dt)
         local vx = v.pos.x
         local vy = v.pos.y
 
-        if not ((vx == path[1].x) and (vy == path[1].y)) then
+        if not (tostring(vx) == tostring(path[1].x)) then
           delta_x = path[1].x - vx
+          is_walking = true
+        elseif not (tostring(vy) == tostring(path[1].y)) then
           delta_y = path[1].y - vy
           is_walking = true
         else

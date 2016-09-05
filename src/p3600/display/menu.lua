@@ -105,9 +105,11 @@ return function(items)
       end,
 
       ['select'] = function()
-        p3600.state.changed = true
-        p3600.state.do_onreturn = true
-        p3600.state.menu_items[p3600.state.selection].action()
+        if (p3600.state.menu_items[p3600.state.selection].action) then
+          p3600.state.changed = true
+          p3600.state.do_onreturn = true
+          return p3600.state.menu_items[p3600.state.selection].action()
+        end
       end,
 
       ['back'] = function()

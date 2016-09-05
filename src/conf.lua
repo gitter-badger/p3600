@@ -17,6 +17,7 @@ function love.conf(t)
         ['d']      = 'right',
         ['right']  = 'right',
         ['space']  = 'interact',
+        ['e']      = 'inventory',
         ['escape'] = 'pause',
         ['lshift'] = 'run',
         ['mouse2'] = 'run',

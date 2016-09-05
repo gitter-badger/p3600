@@ -1,5 +1,6 @@
 return {
   id = 'tunic',
+  name = 'Tunic',
   description = {
     "A simple cloth tunic.",
   },

@@ -63,13 +63,19 @@ return function(name, arg)
     local tbl = {
       ['pause'] = function()
         p3600.state.changed = true
-        require('p3600.pause')(p3600.state.can_save)
+        return require('p3600.pause')(p3600.state.can_save)
+      end,
+
+      ['inventory'] = function()
+        p3600.state.changed = true
+        p3600.push_state()
+        return require('p3600.inventory')()
       end,
     }
 
     if not (p3600.kb.w[key] == nil) then
       if not (tbl[p3600.kb.w[key]] == nil) then
-        tbl[p3600.kb.w[key]]()
+        return tbl[p3600.kb.w[key]]()
       end
     end
   end
