@@ -38,6 +38,6 @@ p3600.love: $(files)
 	$(MAKE) -C p3600 -f ../Makefile ../p3600.love
 
 ../p3600.love:
-	$(ZIP) ../p3600.love -r * -x .gitignore
+	$(ZIP) ../p3600.love -r * -x .gitignore -x '*.md'
 
 .PHONY: all
