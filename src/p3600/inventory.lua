@@ -54,7 +54,32 @@ return function()
     make_item_menu = function(equipped, idx) -- for make_menu
       local mnu = {
         back = p3600.pop_state,
+
         start_row = 16,
+
+        init = function()
+          local id
+          if (equipped) then
+            id = p3600.gstate.entity[0].inventory.wearing[idx].id
+          else
+            id = p3600.gstate.entity[0].inventory[idx].id
+          end
+
+          p3600.state.item = require('p3600.item.'..id)
+
+          p3600.state.item_icon = love.graphics.newImage(
+           '/data/item/'..id..'.tga')
+        end,
+
+        draw = function()
+          love.graphics.draw(p3600.state.item_icon, 1, 1)
+
+          p3600.state._p(1, 2, p3600.state.item.name)
+
+          for line, text in pairs(p3600.state.item.description) do
+            p3600.state._p(2 + line, 3, text)
+          end
+        end,
       }
 
       if (equipped) then
