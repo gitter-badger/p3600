@@ -8,14 +8,22 @@ return function(entity)
   do
     local eo = {}
     local eu = {}
+    local ew = {}
 
     for idx, item in ipairs(entity.inventory.wearing) do
-      if (require('p3600.item.'..item.id).equipment.over_hair) then
-        eo[#eo + 1] = love.graphics.newImage(
-         '/data/spritesheet/r/'..entity.race..'/equip/'..item.id..'/'..
-         entity.sex..'.tga')
-      else
-        eu[#eu + 1] = love.graphics.newImage(
+      local itm = require('p3600.item.'..item.id)
+      if (itm.equipment.armor) then
+        if (itm.equipment.armor.over_hair) then
+          eo[#eo + 1] = love.graphics.newImage(
+           '/data/spritesheet/r/'..entity.race..'/equip/'..item.id..'/'..
+           entity.sex..'.tga')
+        else
+          eu[#eu + 1] = love.graphics.newImage(
+           '/data/spritesheet/r/'..entity.race..'/equip/'..item.id..'/'..
+           entity.sex..'.tga')
+        end
+      elseif (itm.equipment.weapon) then
+        ew[#ew + 1] = love.graphics.newImage(
          '/data/spritesheet/r/'..entity.race..'/equip/'..item.id..'/'..
          entity.sex..'.tga')
       end
@@ -23,6 +31,7 @@ return function(entity)
 
     entity.spritesheet.equip_over = eo
     entity.spritesheet.equip_under = eu
+    entity.spritesheet.weapons = ew
   end
 
   if (entity.eid == 0) then

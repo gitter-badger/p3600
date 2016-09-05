@@ -13,9 +13,11 @@ return {
   },
   equipment = {
     defense = 8.02,
-    coverage_skin = 0.4,
-    coverage_light = 0.4,
-    freedom = 0.9,
     weight = 0.3,
+    armor = {
+      coverage_skin = 0.4,
+      coverage_light = 0.4,
+      freedom = 0.9,
+    },
   },
 }
