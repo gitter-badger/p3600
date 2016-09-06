@@ -1,6 +1,6 @@
 require 'p3600'
 
-return function(name, arg)
+return function(name, ...)
   require('p3600.unuse_sprites')()
 
   p3600.clear_love_callbacks()
@@ -25,14 +25,16 @@ return function(name, arg)
   }
 
   local prev_area = p3600.gstate.entity[0].pos.area
+
+  if
+   love.filesystem.exists('/p3600/area/'..name..'.lua') or
+   love.filesystem.exists('/p3600/area/'..name..'/init.lua')
+  then
+    require('p3600.area.'..name)((prev_area == name), ...)
+  end
+
   if not (prev_area == name) then
     do
-      if
-       love.filesystem.exists('/p3600/area/'..name..'.lua') or
-       love.filesystem.exists('/p3600/area/'..name..'/init.lua')
-      then
-        require('p3600.area.'..name)(arg)
-      end
       p3600.gstate.entity[0].pos.area = name
 
       local entrance = mapdata.entrances[prev_area]
@@ -69,7 +71,7 @@ return function(name, arg)
       ['inventory'] = function()
         p3600.state.changed = true
         p3600.push_state()
-        return require('p3600.inventory')()
+        return require('p3600.inventory.display')()
       end,
     }
 
