@@ -44,6 +44,13 @@ function Entity:take(idx)
 end
 
 function Entity:equip(idx)
+  do -- can't have two weapons
+    for i = 1, #self.inventory.wearing, 1 do
+      if (self.inventory.wearing[i].data.equipment.weapon) then
+        self:unequip(i)
+      end
+    end
+  end
   self.inventory.wearing[#self.inventory.wearing + 1] = self.inventory[idx]
   table.remove(self.inventory, idx)
 end

@@ -8,7 +8,7 @@ return function()
     i = i + 1
 
     for idx, item in ipairs(p3600.gstate.entity[0].inventory.wearing) do
-      local itm = require('p3600.item.'..item.id)
+      local itm = item.data
 
       m[i] = {
         label = itm.name,
@@ -24,8 +24,7 @@ return function()
     i = i + 1
 
     for idx = 1, #p3600.gstate.entity[0].inventory, 1 do
-      local itm = require('p3600.item.'..
-                          p3600.gstate.entity[0].inventory[idx].id)
+      local itm = p3600.gstate.entity[0].inventory[idx].data
 
       m[i] = {
         label = itm.name,
@@ -58,14 +57,14 @@ return function()
         start_row = 16,
 
         init = function()
-          local id
+          local itm
           if (equipped) then
-            id = p3600.gstate.entity[0].inventory.wearing[idx].id
+            itm = p3600.gstate.entity[0].inventory.wearing[idx]
           else
-            id = p3600.gstate.entity[0].inventory[idx].id
+            itm = p3600.gstate.entity[0].inventory[idx]
           end
 
-          p3600.state.item = require('p3600.item.'..id)
+          p3600.state.item = itm.data
 
           p3600.state.item_icon = love.graphics.newImage(
            '/data/item/'..id..'.tga')
@@ -92,8 +91,7 @@ return function()
           end,
         }
       else
-        local itm = require('p3600.item.'..
-                            p3600.gstate.entity[0].inventory[idx].id)
+        local itm = p3600.gstate.entity[0].inventory[idx].data
         if (itm.equipment) then
           mnu[#mnu + 1] = {
             label = 'Equip',

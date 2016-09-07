@@ -11,7 +11,7 @@ return function(entity)
     local ew = {}
 
     for idx, item in ipairs(entity.inventory.wearing) do
-      local itm = require('p3600.item.'..item.id)
+      local itm = item.data
       if (itm.equipment.armor) then
         if (itm.equipment.armor.over_hair) then
           eo[#eo + 1] = love.graphics.newImage(
