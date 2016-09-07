@@ -1,6 +1,9 @@
 require 'p3600'
 
 function love.run()
+  -- genius!
+  setmetatable(package.loaded, {__mode = 'v',})
+
   if love.math then
     love.math.setRandomSeed(os.time())
   end
