@@ -82,8 +82,10 @@ return function()
           area = 'clearing',
         }
 
-        --p3600.gstate.entity[0]:give(require('p3600.Item')('tunic'))
-        p3600.gstate.entity[0]:give('tunic')
+        do
+          local i = p3600.gstate.entity[0]:give(require('p3600.Item')('tunic'))
+          p3600.gstate.entity[0]:equip(i)
+        end
 
         p3600.init_state_stack()
         require('p3600.transition.intro')()

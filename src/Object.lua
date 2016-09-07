@@ -1,6 +1,12 @@
 local Object
 Object = {
-  __index = Object,
+  __index = function(t, index)
+    if not (index == 'new_class') then
+      return Object[index]
+    else
+      return nil
+    end
+  end,
 
   __call = function(class, ...)
     return class._new(...)

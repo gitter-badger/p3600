@@ -88,10 +88,7 @@ return function()
           action = function()
             p3600.pop_state()
             p3600.state.inv_changed = true
-            local inv = p3600.gstate.entity[0].inventory
-            local inv_e = p3600.gstate.entity[0].inventory.wearing
-            inv[#inv + 1] = inv_e[idx]
-            table.remove(inv_e, idx)
+            p3600.gstate.entity[0]:unequip(idx)
           end,
         }
       else
@@ -103,10 +100,7 @@ return function()
             action = function()
               p3600.pop_state()
               p3600.state.inv_changed = true
-              local inv = p3600.gstate.entity[0].inventory
-              local inv_e = p3600.gstate.entity[0].inventory.wearing
-              inv_e[#inv_e + 1] = inv[idx]
-              table.remove(inv, idx)
+              p3600.gstate.entity[0]:equip(idx)
             end,
           }
         end

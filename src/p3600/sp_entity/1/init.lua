@@ -21,4 +21,10 @@ saoi.pos = {
   area = 'clearing',
 }
 
+local Item = require('p3600.Item')
+
+saoi:give(Item('sao_shortsword'))
+saoi:give(Item('sao_longsword'))
+saoi:equip(saoi:give(Item('sao_armor')))
+
 return saoi
