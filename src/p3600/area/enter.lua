@@ -5,10 +5,10 @@ return function(name, ...)
   p3600.slowness = 0.01
 
   if not (love.filesystem.exists('/p3600/area/'..name..'/data.lua')) then
-    p3600.area.generator(name)
+    p3600.area.generator.generate(name)
   end
 
-  local mapdata = p3600.area[name].data
+  local mapdata = loadfile('/p3600/area/'..name..'/data.lua')()
 
   p3600.state = {
     map = p3600.display.make_map(mapdata),
@@ -24,7 +24,7 @@ return function(name, ...)
 
   local prev_area = p3600.gstate.entity[0].pos.area
 
-  do
+  if (p3600.area[name]) then
     local f = p3600.area[name].onload
     if (f) then
       f((prev_area == name), ...)
