@@ -1,5 +1,5 @@
 return function()
-  require('p3600.display.dialog')({
+  p3600.display.dialog{
     text = {
       'Okey dokey!',
       '',
@@ -10,7 +10,7 @@ return function()
       {
         label = 'Stab ALL the things!',
         action = function()
-          require('p3600.display.end_dialog')()
+          p3600.display.end_dialog()
           p3600.pop_state()
 
           local sword = p3600.gstate.entity[1]:search_inv('sao_shortsword')
@@ -21,8 +21,8 @@ return function()
 
       {
         label = 'On second thought...',
-        action = require('p3600.sp_entity.1.dialog.init_weapon.long_sword'),
+        action = p3600.sp_entity[1].dialog.init_weapon.long_sword,
       },
     },
-  })
+  }
 end

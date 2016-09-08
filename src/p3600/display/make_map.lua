@@ -1,5 +1,5 @@
 return function(mapdata)
-  local spq = require('p3600.display.spq')
+  local spq = p3600.display.spq
 
   local map = {
     width = mapdata.width,

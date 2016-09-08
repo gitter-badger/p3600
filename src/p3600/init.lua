@@ -1,4 +1,4 @@
-local p3600 = {}
+local p3600 = {_modname = 'p3600'}
 package.nogc[#package.nogc + 1] = p3600
 
 p3600.state = {}
@@ -7,17 +7,6 @@ p3600.state_stack = {}
 
 -- Sleep this many seconds every tick.
 p3600.slowness = 0.001
-
-p3600.display = {
-  buffer = {},
-
-  -- If true, screen will be redrawn.
-  changed = true,
-
-  -- Automatic values. Don't mess with these.
-  width = 800,
-  height = 600,
-}
 
 p3600.font = {}
 
@@ -44,7 +33,7 @@ end
 
 function p3600.pop_state()
   if not (p3600.state._sprites_used == nil) then
-    require('p3600.unuse_sprites')()
+    p3600.unuse_sprites()
   end
 
   p3600.draw          = p3600.state_stack.draw
@@ -69,6 +58,12 @@ function p3600.pop_state()
 end
 
 function p3600.init_state_stack()
+  if not (p3600.state_stack == nil) then
+    while not (p3600.state_stack.state_stack == nil) do
+      p3600.pop_state() -- unuse_sprites, etc.
+    end
+  end
+
   local endf = function()
     love.event.quit(0)
   end
@@ -310,4 +305,5 @@ function p3600.init()
   p3600.init = nil -- not needed anymore
 end
 
+setmetatable(p3600, require('package_metatable'))
 return p3600

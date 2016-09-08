@@ -6,7 +6,7 @@ return function(eid, v, dt)
   end
 
   if (v.special) then
-    if (require('p3600.sp_entity.'..eid..'.update')(dt)) then
+    if (p3600.sp_entity[eid].update(dt)) then
       return
     end
   end
@@ -51,9 +51,9 @@ return function(eid, v, dt)
           goto tryfollow
         end
       else
-        path = require('p3600.pathfinder')(p3600.state.map.tiletype,
-                                           math.floor(v.pos.x),
-                                           math.floor(v.pos.y), fx, fy)
+        path = p3600.pathfinder(p3600.state.map.tiletype,
+                                math.floor(v.pos.x),
+                                math.floor(v.pos.y), fx, fy)
 
         v.following.prev = {
           _no_save = true,

@@ -9,7 +9,7 @@ return function(_e)
     if not (p3600.state.active_entities == nil) then
       ae = p3600.state.active_entities
     else
-      ae = require('p3600.get_entities_in_area')(entity.pos.area)
+      ae = p3600.get_entities_in_area(entity.pos.area)
     end
 
     for i, e in pairs(ae) do
@@ -60,7 +60,7 @@ return function(_e)
       if not (p3600.state.map == nil) then
         tiletype = p3600.state.map.tiletype
       else
-        tiletype = require('p3600.area.'..entity.pos.area..'.data').tiletypes
+        tiletype = p3600.area[entity.pos.area].data.tiletypes
       end
 
       if (tiletype[y][x] == 1) then

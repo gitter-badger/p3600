@@ -11,7 +11,7 @@ return function(eid)
     else
       p3600.sprite_refs[eid] = 1
 
-      return require('p3600.reload_sprites')(p3600.gstate.entity[eid])
+      return p3600.reload_sprites(p3600.gstate.entity[eid])
     end
   end
 end

@@ -12,7 +12,7 @@ return function()
         label = itm.name,
         action = function()
           p3600.push_state()
-          return require('p3600.display.menu')(m.make_item_menu(true, idx))
+          return p3600.display.menu(m.make_item_menu(true, idx))
         end,
       }
       i = i + 1
@@ -28,7 +28,7 @@ return function()
         label = itm.name,
         action = function()
           p3600.push_state()
-          return require('p3600.display.menu')(m.make_item_menu(false, idx))
+          return p3600.display.menu(m.make_item_menu(false, idx))
         end,
       }
       i = i + 1
@@ -65,7 +65,7 @@ return function()
           p3600.state.item = itm.data
 
           p3600.state.item_icon = love.graphics.newImage(
-           '/data/item/'..id..'.tga')
+           '/data/item/'..itm.id..'.tga')
         end,
 
         draw = function()
@@ -126,5 +126,5 @@ return function()
 
   make_menu(m)
 
-  return require('p3600.display.menu')(m)
+  return p3600.display.menu(m)
 end

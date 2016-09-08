@@ -27,7 +27,7 @@ return function()
 
     f:write("return {\n")
     f:write('  gstate = ')
-    require('p3600.serialize')(f, p3600.gstate, '  ')
+    p3600.serialize(f, p3600.gstate, '  ')
     f:write(",\n")
     f:write("}\n")
 

@@ -5,7 +5,7 @@ Item._is_object = 'p3600.Item'
 
 function Item.__index(tbl, index)
   if (index == 'data') then
-    return require('p3600.item.'..tbl.id)
+    return p3600.item[tbl.id]
   end
 
   return Item._parent.__index(tbl, index)

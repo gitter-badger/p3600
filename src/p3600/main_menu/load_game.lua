@@ -11,7 +11,7 @@ return function()
   local load_file = function()
     local n = '/save/'..p3600.state.menu_items[p3600.state.selection].label
     p3600.pop_state()
-    require('p3600.load_game')(n)
+    p3600.load_game(n)
   end
 
   local m = {
@@ -27,5 +27,5 @@ return function()
     }
   end
 
-  require('p3600.display.menu')(m)
+  p3600.display.menu(m)
 end

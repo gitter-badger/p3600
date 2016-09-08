@@ -1,4 +1,6 @@
 function love.run()
+  loadfile = love.filesystem.load
+
   require('better_package')()
 
   p3600 = require('p3600')
@@ -28,9 +30,9 @@ function love.run()
   end
 
   if (arg[2] == 'editor') then
-    require('p3600.editor')(arg[3], true)
+    p3600.editor.run(arg[3], true)
   else
-    require('p3600.main_menu')()
+    p3600.main_menu.top()
   end
 
   love.timer.step()

@@ -1,8 +1,8 @@
 return function()
   p3600.push_state()
-  require('p3600.display.menu')({
+  p3600.display.menu{
     init = function()
-      p3600.state.r = require('p3600.race')
+      p3600.state.r = p3600.race
       p3600.state.name = ''
       p3600.state.race = 0
       p3600.state.sex = 1
@@ -20,8 +20,8 @@ return function()
         local setname = function(str)
           p3600.state.name = str
         end
-        require('p3600.display.text_input')(2, 10, setname, p3600.state.name,
-                                            {r = 0, b = 0, g = 0})
+        p3600.display.text_input(2, 10, setname, p3600.state.name,
+                                 {r = 0, b = 0, g = 0})
       end,
     },
 
@@ -29,7 +29,7 @@ return function()
       label = function()
         return 'Race: '..p3600.state.r[p3600.state.race].singular
       end,
-      action = require('p3600.main_menu.new_game.race'),
+      action = p3600.main_menu.new_game_race,
     },
 
     {
@@ -62,7 +62,7 @@ return function()
         p3600.state_stack.state.new_game.start = true
         p3600.gstate = {
           entity = {
-            [0] = require('p3600.Entity'){
+            [0] = p3600.Entity{
               eid = 0,
               name = p3600.state.name,
               race = p3600.state.race,
@@ -81,12 +81,12 @@ return function()
         }
 
         do
-          local i = p3600.gstate.entity[0]:give(require('p3600.Item')('tunic'))
+          local i = p3600.gstate.entity[0]:give(p3600.Item('tunic'))
           p3600.gstate.entity[0]:equip(i)
         end
 
         p3600.init_state_stack()
-        require('p3600.transition.intro')()
+        p3600.transition.intro()
       end,
     },
 
@@ -96,5 +96,5 @@ return function()
         p3600.pop_state()
       end,
     },
-  })
+  }
 end

@@ -49,7 +49,7 @@ return function(entity)
        '/data/spritesheet/r/'..entity.race..'/p/'..entity.sex..'/hair.tga')
     end
   elseif (entity.special) then
-    require('p3600.sp_entity.'..entity.eid..'.load_spritesheets')(entity)
+    p3600.sp_entity[entity.eid].load_spritesheets(entity)
   else
     entity.spritesheet.body = love.graphics.newImage(
      '/data/spritesheet/r/'..entity.race..'/body/'..entity.sex..'/'..

@@ -1,5 +1,5 @@
 return function()
-  require('p3600.display.dialog')({
+  p3600.display.dialog{
     text = {
       "You don't remember?!",
       '...',
@@ -16,5 +16,5 @@ return function()
         end,
       }
     },
-  })
+  }
 end

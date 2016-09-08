@@ -14,8 +14,8 @@ return function()
       return
     else
       love.graphics.clear()
-      require('p3600.display.print')(5, 5, 'Enter area: ')
-      require('p3600.display.print')(3, 6, '(leave blank for list)')
+      p3600.display.print(5, 5, 'Enter area: ')
+      p3600.display.print(3, 6, '(leave blank for list)')
       p3600.state.drawn = true
       p3600.display.changed = true
     end
@@ -31,17 +31,17 @@ return function()
         local n = p3600.state.menu_items[p3600.state.selection].label
         p3600.pop_state()
         p3600.state.name = n
-        p3600.state.map = require('p3600.area.'..n..'.data')
+        p3600.state.map = loadfile('/p3600/area/'..n..'/data.lua')()
       end
       for i,n in pairs(areas) do
-        if not (n == 'init.lua') then
+        if not ((n == 'init.lua') or (n == 'enter.lua')) then
           m[i] = {
             label = n,
             action = load_area,
           }
         end
       end
-      require('p3600.display.menu')(m)
+      p3600.display.menu(m)
     elseif (p3600.state.drawn) then
       local f = function(s)
         if (s == '') then
@@ -49,12 +49,11 @@ return function()
         else
           p3600.state_stack.state_stack.state.name = s
           p3600.state_stack.state_stack.state.map =
-          require('p3600.area.'..s..'.data')
+           loadfile('/p3600/area/'..s..'/data.lua')()
           p3600.state.done = true
         end
       end
-      require('p3600.display.text_input')(5, 17, f, '',
-                                          {r = 0, b = 0, g = 0})
+      p3600.display.text_input(5, 17, f, '', {r = 0, b = 0, g = 0})
     end
   end
 end

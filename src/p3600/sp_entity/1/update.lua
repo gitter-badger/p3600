@@ -7,7 +7,7 @@ return function(dt)
       [0] = function()
         saoi.progress.main = 1
         pc.can_move = true
-        require('p3600.sp_entity.1.dialog.init_clearing.0')()
+        p3600.sp_entity[1].dialog.init_clearing[0]()
       end,
 
       [1] = function()
@@ -20,7 +20,7 @@ return function(dt)
           pc.followers = {}
         end
         pc.followers[#pc.followers + 1] = 1
-        require('p3600.save_game')()
+        p3600.save_game()
         love.filesystem.mount('/save/'..p3600.gstate.entity[0].name, '/', false)
       end,
 
@@ -42,7 +42,7 @@ return function(dt)
           saoi.progress.main = 4
           saoi.following.distance = 3
           pc.can_move = true
-          require('p3600.sp_entity.1.dialog.init_weapon.0')()
+          p3600.sp_entity[1].dialog.init_weapon[0]()
         end
       end,
     }

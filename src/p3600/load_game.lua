@@ -17,5 +17,5 @@ return function(n)
   make_objects(s)
   love.filesystem.mount(n, '/', false)
   p3600.gstate = s.gstate
-  require('p3600.area')(p3600.gstate.entity[0].pos.area)
+  p3600.area.enter(p3600.gstate.entity[0].pos.area)
 end

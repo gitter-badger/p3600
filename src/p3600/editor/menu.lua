@@ -4,9 +4,9 @@ return function()
   local m = {
     back = p3600.pop_state,
     draw = function()
-      require('p3600.display.print')(1, 1,
-      '('..tostring(p3600.state_stack.state.selection.x)..', '..
-      tostring(p3600.state_stack.state.selection.y)..')')
+      p3600.display.print(1, 1,
+       '('..tostring(p3600.state_stack.state.selection.x)..', '..
+       tostring(p3600.state_stack.state.selection.y)..')')
     end,
   }
 
@@ -138,5 +138,5 @@ return function()
   }
 
   p3600.push_state()
-  require('p3600.display.menu')(m)
+  p3600.display.menu(m)
 end

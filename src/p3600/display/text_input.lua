@@ -100,8 +100,8 @@ return function(line, column, setstr, initial_string, bg)
                                 p3600.text_input_buffer_max_sz * 16, 16)
         love.graphics.setColor(r, g, b, a)
       end
-      require('p3600.display.print')(p3600.text_input_r, p3600.text_input_c,
-                                     p3600.text_input_buffer)
+      p3600.display.print(p3600.text_input_r, p3600.text_input_c,
+                          p3600.text_input_buffer)
       p3600.text_input_buffer_changed = false
       p3600.display.changed = true
     end

@@ -1,5 +1,5 @@
 return function()
-  require('p3600.display.dialog')({
+  p3600.display.dialog{
     text = {
       "You'll need _something_...",
       'Oh, you can borrow one of my swords!',
@@ -9,13 +9,13 @@ return function()
     choices = {
       {
         label = 'The long one? (Start with balanced skills.)',
-        action = require('p3600.sp_entity.1.dialog.init_weapon.long_sword'),
+        action = p3600.sp_entity[1].dialog.init_weapon.long_sword,
       },
 
       {
         label = 'The short one. (I hope you like running!)',
-        action = require('p3600.sp_entity.1.dialog.init_weapon.mr_stabby'),
+        action = p3600.sp_entity[1].dialog.init_weapon.mr_stabby,
       },
     },
-  })
+  }
 end

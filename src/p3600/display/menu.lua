@@ -12,7 +12,7 @@ return function(items)
     do_onreturn = false,
     back = items.back,
     on_draw = items.draw,
-    _p = require('p3600.display.print'),
+    _p = p3600.display.print,
   }
 
   if not (items.init == nil) then

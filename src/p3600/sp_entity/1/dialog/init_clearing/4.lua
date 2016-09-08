@@ -6,7 +6,7 @@ return function()
     choices = {
       {
         label = '...',
-        action = require('p3600.sp_entity.1.dialog.init_clearing.3'),
+        action = p3600.sp_entity[1].dialog.init_clearing[3],
       },
     },
   }
@@ -23,5 +23,5 @@ return function()
     t.text[#t.text + 1] = "I forgot?"
   end
 
-  require('p3600.display.dialog')(t)
+  p3600.display.dialog(t)
 end

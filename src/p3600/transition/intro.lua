@@ -10,7 +10,7 @@ return function()
     to_next_frame = 1.0,
     init_frame = function() -- declared here instead of every 0.5 seconds
       if (p3600.state.frame == 3) then
-        require('p3600.area')('clearing', true)
+        p3600.area.enter('clearing', true)
       else
         p3600.state.to_next_frame = 1.0
       end
@@ -28,8 +28,7 @@ return function()
   p3600.draw = function()
     if not (p3600.state.frame == p3600.state.prev_frame) then
       love.graphics.clear(love.graphics.getBackgroundColor())
-      require('p3600.display.print')(8, 1,
-                                     'frame #'..tostring(p3600.state.frame))
+      p3600.display.print(8, 1, 'frame #'..tostring(p3600.state.frame))
       p3600.display.changed = true
       p3600.state.prev_frame = p3600.state.frame
     end

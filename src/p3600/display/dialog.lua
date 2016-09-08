@@ -7,7 +7,7 @@ return function(data)
     choices = data.choices,
     selection = 1,
     changed = true,
-    _p = require('p3600.display.print'),
+    _p = p3600.display.print,
   }
 
   if (p3600._dialog_buffer == nil) then

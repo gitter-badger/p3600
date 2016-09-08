@@ -6,7 +6,7 @@ return function()
     choices = {
       {
         label = 'I have no idea what happened.',
-        action = require('p3600.sp_entity.1.dialog.init_clearing.3'),
+        action = p3600.sp_entity[1].dialog.init_clearing[3],
       },
     },
   }
@@ -17,12 +17,12 @@ return function()
     t.text[#t.text + 1] = 'have a pulse!'
     t.choices[#t.choices + 1] = {
       label = 'How did you revive me?',
-      action = require('p3600.sp_entity.1.dialog.init_clearing.4'),
+      action = p3600.sp_entity[1].dialog.init_clearing[4],
     }
   else
     t.text[#t.text + 1] = "I just found you laying here, and you weren't"
     t.text[#t.text + 1] = 'moving!'
   end
 
-  require('p3600.display.dialog')(t)
+  p3600.display.dialog(t)
 end

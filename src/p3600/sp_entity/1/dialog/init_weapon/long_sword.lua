@@ -1,5 +1,5 @@
 return function()
-  require('p3600.display.dialog')({
+  p3600.display.dialog{
     text = {
       'Okey dokey!',
       '...',
@@ -11,7 +11,7 @@ return function()
       {
         label = 'Feels like rust...',
         action = function()
-          require('p3600.display.end_dialog')()
+          p3600.display.end_dialog()
           p3600.pop_state()
 
           local sword = p3600.gstate.entity[1]:search_inv('sao_longsword')
@@ -20,5 +20,5 @@ return function()
         end,
       },
     },
-  })
+  }
 end

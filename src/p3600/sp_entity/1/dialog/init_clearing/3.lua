@@ -5,7 +5,7 @@ return function()
       {
         label = 'O...k..?',
         action = function()
-          require('p3600.display.end_dialog')()
+          p3600.display.end_dialog()
           p3600.pop_state()
         end,
       },
@@ -16,5 +16,5 @@ return function()
   t.text[#t.text + 1] = "so I'm gonna follow you until I find"
   t.text[#t.text + 1] = 'something more interesting.'
 
-  require('p3600.display.dialog')(t)
+  p3600.display.dialog(t)
 end
