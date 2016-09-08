@@ -1,5 +1,4 @@
-require 'p3600'
-
+local table = require('table')
 local Object = require('Object')
 
 local Entity = Object.new_class('Entity')

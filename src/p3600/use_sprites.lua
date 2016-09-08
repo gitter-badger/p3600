@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function(eid)
   if (p3600.state._sprites_used == nil) then
     p3600.state._sprites_used = {}

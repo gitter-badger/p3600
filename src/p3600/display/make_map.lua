@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function(mapdata)
   local spq = require('p3600.display.spq')
 

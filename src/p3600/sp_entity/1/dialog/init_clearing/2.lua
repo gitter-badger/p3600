@@ -1,6 +1,6 @@
-require 'p3600'
-
 return function()
+  local one_of = require('misc.one_of')
+
   local t = {
     text = {},
     choices = {

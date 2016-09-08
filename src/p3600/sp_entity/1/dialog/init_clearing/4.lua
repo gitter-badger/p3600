@@ -1,6 +1,6 @@
-require 'p3600'
-
 return function()
+  local one_of = require('misc.one_of')
+
   local t = {
     text = {},
     choices = {
@@ -16,8 +16,7 @@ return function()
     t.text[#t.text + 1] = 'I just hit you with a thunder ball!'
     t.text[#t.text + 1] = "Nothing a little jolt can't fix, eh?"
     t.text[#t.text + 1] = ''
-    t.text[#t.text + 1] = "I might've singed your ear, by the way;"
-    t.text[#t.text + 1] = 'aiming that attack is hard.'
+    t.text[#t.text + 1] = "I might've singed your ear, by the way."
     t.text[#t.text + 1] = '(I also destroyed a tree...)'
   else
     t.text[#t.text + 1] = 'Um...'

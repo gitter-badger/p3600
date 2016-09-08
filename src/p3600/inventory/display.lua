@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function()
   local function make_menu(m)
     local i = 1

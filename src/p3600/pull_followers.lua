@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function(eid, x, y)
   local followers = p3600.gstate.entity[eid].followers
   if not (followers == nil) then

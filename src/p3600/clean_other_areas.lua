@@ -1,6 +1,6 @@
-require 'p3600'
-
 return function(name)
+  local table = require('table')
+
   for id = 1, #p3600.gstate.entity, 1 do
     ::removed::
     if not (p3600.gstate.entity[id] == nil) then

@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function()
   local t = {
     text = {},

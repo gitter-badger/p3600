@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function()
   if not (p3600.state._sprites_used == nil) then
     for eid,v in pairs(p3600.state._sprites_used) do

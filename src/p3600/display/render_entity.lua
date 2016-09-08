@@ -1,4 +1,6 @@
 return function(entity)
+  local math = require('math')
+
   if not ((entity.pos.x) and (entity.pos.y)) then
     return
   end

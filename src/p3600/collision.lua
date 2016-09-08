@@ -1,6 +1,6 @@
-require 'p3600'
-
 return function(_e)
+  local math = require('math')
+
   do -- entities
     local x = _e.pos.x
     local y = _e.pos.y

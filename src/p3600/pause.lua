@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function(can_save)
   local i = {
     back = function()

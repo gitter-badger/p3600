@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function()
   require('p3600.display.dialog')({
     text = {

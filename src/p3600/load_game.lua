@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function(n)
   local make_objects
   make_objects = function(t)

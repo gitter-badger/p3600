@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function(area_name, full)
   p3600.clear_love_callbacks()
 

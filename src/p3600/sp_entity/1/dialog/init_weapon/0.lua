@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function()
   p3600.push_state()
   require('p3600.display.dialog')({

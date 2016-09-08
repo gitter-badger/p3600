@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function()
   local cp = function(src, dest)
     local s = love.filesystem.newFile(src, 'r')

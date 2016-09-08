@@ -24,6 +24,8 @@ local function rndsmell()
     'your hand',
   }
 
+  local math = require('math')
+
   if (math.random(20) == 9) then
     return of_course[math.random(#of_course)]
   else

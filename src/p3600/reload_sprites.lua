@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function(entity)
   entity.spritesheet = {
     _no_save = true,

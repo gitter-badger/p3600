@@ -1,10 +1,10 @@
-require 'p3600'
-
 function love.run()
-  -- genius!
-  setmetatable(package.loaded, {__mode = 'v',})
+  require('better_package')()
 
-  if love.math then
+  p3600 = require('p3600')
+
+  do
+    local os = require('os')
     love.math.setRandomSeed(os.time())
   end
 

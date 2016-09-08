@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function(data)
   p3600.clear_love_callbacks()
   p3600.slowness = 0.1

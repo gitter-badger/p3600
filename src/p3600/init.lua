@@ -1,18 +1,27 @@
--- feral module
+local p3600 = {}
+package.nogc[#package.nogc + 1] = p3600
 
-p3600 = {
-  state = {},
-  state_stack = {},
-  slowness = 0.001, -- Sleeps this many seconds every tick.
-  display = {
-    buffer = {},
-    changed = true,
-    width = 800,
-    height = 600,
-  },
-  font = {},
-  sprite_refs = {},
+p3600.state = {}
+
+p3600.state_stack = {}
+
+-- Sleep this many seconds every tick.
+p3600.slowness = 0.001
+
+p3600.display = {
+  buffer = {},
+
+  -- If true, screen will be redrawn.
+  changed = true,
+
+  -- Automatic values. Don't mess with these.
+  width = 800,
+  height = 600,
 }
+
+p3600.font = {}
+
+p3600.sprite_refs = {}
 
 function p3600.push_state()
   p3600.state_stack = {
@@ -179,131 +188,126 @@ function p3600.control_down(id, nest)
   return false
 end
 
-p3600.clear_love_callbacks()
+function p3600.init()
+  p3600.clear_love_callbacks()
 
-function love.draw()
-  love.graphics.setCanvas(p3600.display.buffer)
-  p3600.draw()
-  love.graphics.setCanvas()
-  if (p3600.display.changed) then
-    love.graphics.clear(love.graphics.getBackgroundColor())
-    local ratio_w = p3600.display.width / 800
-    local ratio_h = p3600.display.height / 600
-    local ratio = 0
-    if (ratio_w < ratio_h) then
-      ratio = ratio_w
-    else
-      ratio = ratio_h
+  love.draw = function()
+    love.graphics.setCanvas(p3600.display.buffer)
+    p3600.draw()
+    love.graphics.setCanvas()
+    if (p3600.display.changed) then
+      love.graphics.clear(love.graphics.getBackgroundColor())
+      local ratio_w = p3600.display.width / 800
+      local ratio_h = p3600.display.height / 600
+      local ratio = 0
+      if (ratio_w < ratio_h) then
+        ratio = ratio_w
+      else
+        ratio = ratio_h
+      end
+      love.graphics.translate((p3600.display.width  / 2) - ((800 * ratio) / 2),
+                              (p3600.display.height / 2) - ((600 * ratio) / 2))
+      love.graphics.scale(ratio)
+      love.graphics.draw(p3600.display.buffer)
     end
-    love.graphics.translate((p3600.display.width  / 2) - ((800 * ratio) / 2),
-                            (p3600.display.height / 2) - ((600 * ratio) / 2))
-    love.graphics.scale(ratio)
-    love.graphics.draw(p3600.display.buffer)
   end
-end
 
-function love.focus(f)
-  p3600.focus(f)
-  if (f) then
+  love.focus = function(f)
+    p3600.focus(f)
+    if (f) then
+      p3600.display.changed = true
+    end
+  end
+
+  love.keypressed = function(key)
+    p3600.keypressed(key)
+  end
+
+  love.keyreleased = function(key)
+    p3600.keyreleased(key)
+  end
+
+  love.mousepressed = function(x, y, button, istouch)
+    local cy = love.graphics.getHeight() / 2
+    local cx = love.graphics.getWidth() / 2
+
+    love.event.push('keypressed', 'mouse'..button)
+
+    if (button == 1) then
+      if (x > (cx + (cx / 4))) then
+        love.event.push('keypressed', 'right')
+      end
+
+      if (x < (cx - (cx / 4))) then
+        love.event.push('keypressed', 'left')
+      end
+
+      if (y > (cy + (cy / 4))) then
+        love.event.push('keypressed', 'down')
+      end
+
+      if (y < (cy - (cy / 4))) then
+        love.event.push('keypressed', 'up')
+      end
+    end
+  end
+
+  love.mousereleased = function(x, y, button, istouch)
+    local cy = love.graphics.getHeight() / 2
+    local cx = love.graphics.getWidth() / 2
+
+    love.event.push('keyreleased', 'mouse'..button)
+
+    if (button == 1) then
+      if (x > (cx + (cx / 4))) then
+        love.event.push('keyreleased', 'right')
+      end
+
+      if (x < (cx - (cx / 4))) then
+        love.event.push('keyreleased', 'left')
+      end
+
+      if (y > (cy + (cy / 4))) then
+        love.event.push('keyreleased', 'down')
+      end
+
+      if (y < (cy - (cy / 4))) then
+        love.event.push('keyreleased', 'up')
+      end
+    end
+  end
+
+  love.quit = function()
+    p3600.quit()
+  end
+
+  love.resize = function(w, h)
+    p3600.display.width = w
+    p3600.display.height = h
+    p3600.resize(w, h)
     p3600.display.changed = true
   end
-end
 
-function love.keypressed(key)
-  p3600.keypressed(key)
-end
-
-function love.keyreleased(key)
-  p3600.keyreleased(key)
-end
-
-function love.mousepressed(x, y, button, istouch)
-  local cy = love.graphics.getHeight() / 2
-  local cx = love.graphics.getWidth() / 2
-
-  love.event.push('keypressed', 'mouse'..button)
-
-  if (button == 1) then
-    if (x > (cx + (cx / 4))) then
-      love.event.push('keypressed', 'right')
-    end
-
-    if (x < (cx - (cx / 4))) then
-      love.event.push('keypressed', 'left')
-    end
-
-    if (y > (cy + (cy / 4))) then
-      love.event.push('keypressed', 'down')
-    end
-
-    if (y < (cy - (cy / 4))) then
-      love.event.push('keypressed', 'up')
-    end
+  love.textinput = function(text)
+    p3600.textinput(text)
   end
-end
 
-function love.mousereleased(x, y, button, istouch)
-  local cy = love.graphics.getHeight() / 2
-  local cx = love.graphics.getWidth() / 2
-
-  love.event.push('keyreleased', 'mouse'..button)
-
-  if (button == 1) then
-    if (x > (cx + (cx / 4))) then
-      love.event.push('keyreleased', 'right')
-    end
-
-    if (x < (cx - (cx / 4))) then
-      love.event.push('keyreleased', 'left')
-    end
-
-    if (y > (cy + (cy / 4))) then
-      love.event.push('keyreleased', 'down')
-    end
-
-    if (y < (cy - (cy / 4))) then
-      love.event.push('keyreleased', 'up')
-    end
+  love.update = function(dt)
+    p3600.update(dt)
   end
-end
 
-function love.quit()
-  p3600.quit()
-end
-
-function love.resize(w, h)
-  p3600.display.width = w
-  p3600.display.height = h
-  p3600.resize(w, h)
-  p3600.display.changed = true
-end
-
-function love.textinput(text)
-  p3600.textinput(text)
-end
-
-function love.update(dt)
-  p3600.update(dt)
-end
-
-function p3600.init()
   p3600.display.buffer = love.graphics.newCanvas(800, 600, 'rgb5a1', 0)
+
   p3600.font = love.graphics.newImageFont('/data/font.tga',
-  ' 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`~!@#$%^'..
-  '&*()-_=+[{]}\\|;:\'",<.>/?', 0)
+   ' 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`~!@#$%^'..
+   '&*()-_=+[{]}\\|;:\'",<.>/?', 0)
   love.graphics.setFont(p3600.font)
+
   love.keyboard.setTextInput(false)
+
   p3600.init_state_stack()
+
+  p3600.init = nil -- not needed anymore
 end
 
-
-function one_of(v, ...)
-  local l = select('#', ...)
-  for i = 1, l, 1 do
-    local n = select(i, ...)
-    if (v == n) then
-      return true
-    end
-  end
-  return false
-end
+return p3600

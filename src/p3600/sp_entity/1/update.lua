@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function(dt)
   local pc = p3600.gstate.entity[0]
   local saoi = p3600.gstate.entity[1]
@@ -35,6 +33,8 @@ return function(dt)
       end,
 
       [3] = function()
+        local math = require('math')
+
         if
          (math.abs(saoi.pos.x - pc.pos.x) <= 1.2) and
          (math.abs(saoi.pos.y - pc.pos.y) <= 1.2)

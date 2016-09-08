@@ -1,6 +1,6 @@
-require 'p3600'
-
 return function(eid, v, dt)
+  local math = require('math')
+
   if (eid == 0) then
     return
   end
@@ -75,6 +75,8 @@ return function(eid, v, dt)
           delta_y = path[1].y - vy
           is_walking = true
         else
+          local table = require('table')
+
           table.remove(path, 1)
           if (path[1] == nil) then
             path = nil

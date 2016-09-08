@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function()
   p3600.push_state()
   p3600.clear_love_callbacks()

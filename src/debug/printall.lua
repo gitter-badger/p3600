@@ -1,9 +1,13 @@
-local debug = require('debug')
+-- Options (opts):
+-- - show_metatables -- Show metatables.
+-- - show_recurrent  -- Don't ensure all tables are only printed once.
 
 return function(tbl, opts)
   if not (opts) then
     opts = {}
   end
+
+  local debug = require('debug')
 
   local cycle_tbl = {} -- Detecting recursion is literally this simple.
 

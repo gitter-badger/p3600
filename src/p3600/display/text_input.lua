@@ -1,5 +1,3 @@
-require 'p3600'
-
 --[[
 Reads a line of text, displaying the cursor at (line, column).
 Calls setstr(str), where str is the string that was read.
@@ -36,6 +34,7 @@ return function(line, column, setstr, initial_string, bg)
     local tbl = {
       ['backspace'] = function()
         local utf8 = require('utf8')
+        local string = require('string')
         local offs = utf8.offset(p3600.text_input_buffer, -1)
         if (offs) then
           p3600.text_input_buffer = string.sub(p3600.text_input_buffer,

@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function(name, ...)
   require('p3600.unuse_sprites')()
 

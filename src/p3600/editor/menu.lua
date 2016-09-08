@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function()
   p3600.state.changed = true -- have to redraw
 

@@ -1,5 +1,3 @@
-require 'p3600'
-
 return function(items)
   p3600.slowness = 0.1
   love.keyboard.setTextInput(false)
