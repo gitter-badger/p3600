@@ -9,6 +9,10 @@ local saoi = p3600.Entity{
   speed_mod = 1,
   can_move = true,
   dir = 3,
+  appearance = {
+    hair_hue = 0,
+    hair_light = 30,
+  },
 }
 
 saoi.progress = {

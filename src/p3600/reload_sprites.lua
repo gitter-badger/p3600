@@ -1,3 +1,6 @@
+local hsl2rgb = require('hsl2rgb')
+local rgb2hsl = require('rgb2hsl')
+
 return function(entity)
   entity.spritesheet = {
     _no_save = true,
@@ -39,9 +42,9 @@ return function(entity)
 
     sn = '/save/'..entity.name..'/player/hair.png'
     if (love.filesystem.exists(sn)) then
-      entity.spritesheet.hair = love.graphics.newImage(sn)
+      entity.spritesheet.hair = love.image.newImageData(sn)
     else
-      entity.spritesheet.hair = love.graphics.newImage(
+      entity.spritesheet.hair = love.image.newImageData(
        '/data/spritesheet/r/'..entity.race..'/p/'..entity.sex..'/hair.tga')
     end
   elseif (entity.special) then
@@ -50,10 +53,33 @@ return function(entity)
     entity.spritesheet.body = love.graphics.newImage(
      '/data/spritesheet/r/'..entity.race..'/body/'..entity.sex..'/'..
      entity.appearance.body_type..'.tga')
-    entity.spritesheet.hair = love.graphics.newImage(
+    entity.spritesheet.hair = love.image.newImageData(
      '/data/spritesheet/r/'..entity.race..'/hair/'..entity.sex..'/'..
      entity.appearance.hair_type..'.tga')
   end
+
+  do
+    local abs = require('math').abs
+    local max = require('math').max
+    local min = require('math').min
+
+    local pf = function(x, y, r, g, b, a)
+      if (a == 0) then
+        return r, g, b, a
+      end
+
+      local M = max(r, g, b)
+      local m = min(r, g, b)
+
+      return hsl2rgb(entity.appearance.hair_hue,
+                     (M - m) / (1 - abs((M + m) - 1)),
+                     entity.appearance.hair_light, a)
+    end
+
+    entity.spritesheet.hair:mapPixel(pf)
+  end
+
+  entity.spritesheet.hair = love.graphics.newImage(entity.spritesheet.hair)
 
   entity.spritesheet.quad =
    love.graphics.newQuad(0, 0, 32, 32, 256, 256)

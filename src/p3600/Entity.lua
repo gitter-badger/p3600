@@ -79,9 +79,10 @@ function Entity._new(params)
       wearing = {},
     },
     appearance = {
-      hair_type = 0,
-      hair_color = {0, 0, 0, 0},
-      body_type = 0,
+      hair_type = (params.appearance and params.appearance.hair_type) or 0,
+      body_type = (params.appearance and params.appearance.body_type) or 0,
+      hair_hue = (params.appearance and params.appearance.hair_hue) or 0,
+      hair_light = (params.appearance and params.appearance.hair_light) or 0,
     },
     _is_object = Entity._is_object,
   }

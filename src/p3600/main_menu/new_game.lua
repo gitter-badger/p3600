@@ -66,6 +66,10 @@ return function()
               eid = 0,
               name = p3600.state.name,
               race = p3600.state.race,
+              appearance = {
+                hair_hue = require('math').random(0, 360),
+                hair_light = require('math').random(0, 256),
+              },
               sex = p3600.state.sex,
               speed_mod = 1,
               dir = 1,
