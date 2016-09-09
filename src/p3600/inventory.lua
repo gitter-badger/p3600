@@ -86,6 +86,7 @@ return function()
             p3600.pop_state()
             p3600.state.inv_changed = true
             p3600.gstate.entity[0]:unequip(idx)
+            p3600.reload_sprites(p3600.gstate.entity[0])
           end,
         }
       else
@@ -97,6 +98,7 @@ return function()
               p3600.pop_state()
               p3600.state.inv_changed = true
               p3600.gstate.entity[0]:equip(idx)
+              p3600.reload_sprites(p3600.gstate.entity[0])
             end,
           }
         end

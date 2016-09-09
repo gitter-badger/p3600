@@ -20,10 +20,6 @@ return function(entity)
            '/data/spritesheet/r/'..entity.race..'/equip/'..item.id..'/'..
            entity.sex..'.tga')
         end
-      elseif (itm.equipment.weapon) then
-        ew[#ew + 1] = love.graphics.newImage(
-         '/data/spritesheet/r/'..entity.race..'/equip/'..item.id..'/'..
-         entity.sex..'.tga')
       end
     end
 

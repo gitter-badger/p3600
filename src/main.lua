@@ -1,7 +1,24 @@
 function love.run()
-  loadfile = love.filesystem.load
+  loadfile = love.filesystem.load -- seems like a good idea
 
   require('better_package')()
+  -- set a handler for external libraries that don't require everything they use
+  setmetatable(_G, {__index = require('package').loaded})
+
+  -- remove all unneeded global stuff
+  bit = nil
+  coroutine = nil
+  debug = nil
+  io = nil
+  jit = nil
+  math = nil
+  os = nil
+  string = nil
+  table = nil
+
+  gcinfo = nil -- undocumented = non-existant
+  module = nil -- that didn't work out at all
+  newproxy = nil -- also undocumented
 
   p3600 = require('p3600')
 
@@ -36,6 +53,8 @@ function love.run()
   end
 
   love.timer.step()
+
+  arg = nil -- Can't do _this_ in C! (AFAIK)
 
   while true do
     if love.event then

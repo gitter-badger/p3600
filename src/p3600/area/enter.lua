@@ -82,8 +82,13 @@ return function(name, ...)
   p3600.update = function(dt)
     p3600.state.update_player(dt)
     do
-      local pcx = math.floor(p3600.gstate.entity[0].pos.x)
-      local pcy = math.floor(p3600.gstate.entity[0].pos.y)
+      local pcx
+      local pcy
+      do
+        local math = require('math')
+        pcx = math.floor(p3600.gstate.entity[0].pos.x)
+        pcy = math.floor(p3600.gstate.entity[0].pos.y)
+      end
 
       if
        (p3600.state.map.exits[pcy]) and

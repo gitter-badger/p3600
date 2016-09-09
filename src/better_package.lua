@@ -18,42 +18,76 @@
 --
 -- Consult your doctor or physician before using this module to see if it's
 -- right for you.
-
-local gc_blacklist = { -- pre-loaded modules that cannot be safely unloaded
-  -- Only top-level modules, the sub-modules are in the tables.
-  -- For example, love.graphics is accessible through love.
-  'coroutine', -- probably
-  'debug', -- probably
-  'ffi',
-  'jit',
-  'love',
-  'math', -- maybe, uses C functions
-  'os', -- not verified
-  'package', -- we _need_ this
-}
+--
+-- Ironically, this module itself is a feral module.
 
 local package = require('package')
+
+if not (package.gc_blacklist) then
+  package.gc_blacklist = {}
+end
+
+-- Modules that cannot be safely unloaded.
+-- This list is by no means complete; you can add more entries at any time.
+package.gc_blacklist['enet'] = true
+package.gc_blacklist['ffi'] = true
+package.gc_blacklist['jit'] = true
+package.gc_blacklist['love'] = true
+package.gc_blacklist['ltn12'] = true
+package.gc_blacklist['mime'] = true
+package.gc_blacklist['mime.core'] = true -- can be loaded seperately
+package.gc_blacklist['socket'] = true
+package.gc_blacklist['socket.core'] = true -- can be loaded seperately
+package.gc_blacklist['socket.ftp'] = true -- can be loaded seperately
+package.gc_blacklist['socket.http'] = true -- can be loaded seperately
+package.gc_blacklist['socket.smtp'] = true -- can be loaded seperately
+package.gc_blacklist['socket.tp'] = true -- can be loaded seperately
+package.gc_blacklist['socket.url'] = true -- can be loaded seperately
+package.gc_blacklist['utf8'] = true
+
+-- It is almost impossible to tell how the "standard library"
+-- is implemented, so it is blacklisted to be safe.
+package.gc_blacklist['bit'] = true
+package.gc_blacklist['coroutine'] = true
+package.gc_blacklist['debug'] = true
+package.gc_blacklist['io'] = true
+package.gc_blacklist['math'] = true
+package.gc_blacklist['os'] = true
+package.gc_blacklist['package'] = true
+package.gc_blacklist['string'] = true
+package.gc_blacklist['table'] = true
+
+package.require = require
+
+local better_require = function(modname)
+  if not (package.loaded[modname]) and (package.gc_blacklist[modname]) then
+    local r = package.require(modname)
+    package.nogc[#package.nogc + 1] = r
+    return r
+  end
+
+  return package.require(modname)
+end
 
 return function()
   if (package.is_better) then -- running twice is stupid, and possibly unsafe
     return
   end
 
-  package.is_better = true
-
-  setmetatable(package.loaded, {__mode = 'v',})
+  require = better_require -- real require is saved to package.require
 
   if not (package.nogc) then
     package.nogc = {}
   end
 
-  for i, m in pairs(gc_blacklist) do
+  for m, i in pairs(package.gc_blacklist) do
     if (package.loaded[m]) then
       if (package.loaded[m] == true) then -- _bad_ module
         if (_G[m]) then -- this won't work if there are dots in the name
           package.nogc[#package.nogc + 1] = _G[m]
         else -- _UGLY_ module
-          -- It's your fault we can't have nice things.
+          -- This module is ugly, unfortunately.
+          -- However, it is safe to unload.
           error('Module "'..m..'" is loaded, but not accessible in a sane way.')
         end
       else -- _good_ module
@@ -61,4 +95,8 @@ return function()
       end
     end
   end
+
+  setmetatable(package.loaded, {__mode = 'v',})
+
+  package.is_better = true
 end
