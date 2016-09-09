@@ -1,4 +1,4 @@
-local m = {_modname = 'p3600.display'}
+local m = module('p3600.display')
 package.nogc[#package.nogc + 1] = m
 
 m.buffer = {}
@@ -10,5 +10,4 @@ m.changed = true
 m.width = 800
 m.height = 600
 
-setmetatable(m, require('package_metatable'))
 return m

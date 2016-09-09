@@ -1,4 +1,4 @@
-local p3600 = {_modname = 'p3600'}
+local p3600 = module('p3600')
 package.nogc[#package.nogc + 1] = p3600
 
 p3600.state = {}
@@ -305,5 +305,4 @@ function p3600.init()
   p3600.init = nil -- not needed anymore
 end
 
-setmetatable(p3600, require('package_metatable'))
 return p3600

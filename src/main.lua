@@ -17,8 +17,9 @@ function love.run()
   table = nil
 
   gcinfo = nil -- undocumented = non-existant
-  module = nil -- that didn't work out at all
   newproxy = nil -- also undocumented
+
+  module = require('module')
 
   p3600 = require('p3600')
 
