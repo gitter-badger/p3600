@@ -12,18 +12,11 @@ files := $(patsubst src/%,p3600/%,$(shell find src -name "*.lua"))
 dirs += $(patsubst libs/Jumper/%,p3600/%,$(shell find libs/Jumper/jumper -type d))
 files += $(patsubst libs/Jumper/%,p3600/%,$(shell find libs/Jumper/jumper -name "*.lua"))
 
-# debugger lib
-files += p3600/debug/debugger.lua
-
 p3600/%.lua: src/%.lua $(dirs)
 	$(LUAJIT) $< $@
 
 # Jumper lib
 p3600/jumper/%.lua: libs/Jumper/jumper/%.lua $(dirs)
-	$(LUAJIT) $< $@
-
-# debugger lib
-p3600/debug/debugger.lua: libs/debugger.lua/debugger.lua
 	$(LUAJIT) $< $@
 
 p3600/conf.lua: src/conf.lua

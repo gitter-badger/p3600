@@ -1,6 +1,3 @@
-[submodule "libs/debugger.lua"]
-	path = libs/debugger.lua
-	url = git://github.com/slembcke/debugger.lua.git
 [submodule "libs/Jumper"]
 	path = libs/Jumper
 	url = git://github.com/Yonaba/Jumper.git

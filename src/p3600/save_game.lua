@@ -18,11 +18,12 @@ return function()
 
   love.filesystem.createDirectory(save_name)
 
-  do
-    if (love.filesystem.exists(save_name..'/data.lua')) then
-      cp(save_name..'/data.lua', save_name..'/data.lua.bak')
-    end
+  if (love.filesystem.exists(save_name..'/data.lua')) then
+    -- TODO: any way to simply rename?
+    cp(save_name..'/data.lua', save_name..'/data.lua.bak')
+  end
 
+  do
     local f = love.filesystem.newFile(save_name..'/data.lua', 'w')
 
     f:write("return {\n")
@@ -37,6 +38,34 @@ return function()
 
   if (love.filesystem.exists(save_name..'/data.lua.bak')) then
     love.filesystem.remove(save_name..'/data.lua.bak')
+  end
+
+  do
+    local f = love.filesystem.newFile(save_name..'/keybinds.lua', 'w')
+
+    f:write("return {\n")
+
+    f:write("  -- Basic\n")
+    f:write('  world = ')
+    p3600.serialize(f, p3600.kb.w, '  ')
+    f:write(",\n")
+
+    f:write("\n")
+    f:write("  -- Menus\n")
+    f:write('  menu = ')
+    p3600.serialize(f, p3600.kb.m, '  ')
+    f:write(",\n")
+
+    f:write("\n")
+    f:write("  -- Level Editor\n")
+    f:write('  editor = ')
+    p3600.serialize(f, p3600.kb.e, '  ')
+    f:write(",\n")
+
+    f:write("}\n")
+
+    f:flush()
+    f:close()
   end
 
   if not (love.filesystem.exists(save_name..'/player/body.png')) then
