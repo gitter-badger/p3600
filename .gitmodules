@@ -1,6 +1,3 @@
 [submodule "libs/Jumper"]
 	path = libs/Jumper
 	url = git://github.com/Yonaba/Jumper.git
-[submodule "wiki"]
-	path = wiki
-	url = ../p3600.wiki.git
