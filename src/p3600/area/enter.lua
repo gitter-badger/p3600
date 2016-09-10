@@ -65,6 +65,29 @@ return function(name, ...)
         return p3600.pause(p3600.state.can_save)
       end,
 
+      ['interact'] = function()
+        local tx = p3600.gstate.entity[0].pos.x
+        local ty = p3600.gstate.entity[0].pos.y
+        local ta = p3600.gstate.entity[0].pos.area
+
+        if (p3600.gstate.entity[0].dir == 0) then
+          ty = ty + 1
+        elseif (p3600.gstate.entity[0].dir == 1) then
+          tx = tx - 1
+        elseif (p3600.gstate.entity[0].dir == 2) then
+          ty = ty - 1
+        else -- (p3600.gstate.entity[0].dir == 3)
+          tx = tx + 1
+        end
+
+        local e = p3600.get_entity_at(tx, ty, 0.3, ta)
+
+        if (e) then
+          p3600.state.changed = true
+          return p3600.interact(e)
+        end
+      end,
+
       ['inventory'] = function()
         p3600.state.changed = true
         p3600.push_state()

@@ -72,11 +72,11 @@ return {
   },
 
   exits = {
-    left = 'forest_1_1',
+    left = 'forest_'..tostring(require('math').random(2) + 1)..'_2',
   },
 
   entrances = {
-    ['forest_1_1'] = {
+    ['forest_1_2'] = {
       player = {
         x = 2,
         y = 9,
