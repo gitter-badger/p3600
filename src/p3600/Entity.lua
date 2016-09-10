@@ -60,11 +60,36 @@ function Entity:unequip(idx)
 end
 
 function Entity._new(params)
+  assert(params.race)
+
+  local random = require('math').random
+
+  local nr = p3600.race[params.race]
+
+  local s
+  if (params.sex) then
+    s = params.sex
+  else
+    local t = {}
+    for k, _ in pairs(nr.sexes) do
+      t[#t + 1] = k
+    end
+    s = t[random(#t)]
+  end
+
+  local bs
+  local hs
+  do
+    local t = '/data/spritesheet/r/'..params.race..'/'
+    bs = t..'body/'..s
+    hs = t..'hair/'..s
+  end
+
   local r = {
     eid = params.eid,
     special = params.special,
-    name = params.name,
-    sex = params.sex,
+    name = params.name or nr.common_names[s][random(#nr.common_names[s])],
+    sex = s,
     race = params.race,
     pos = {
       x = 1,
@@ -74,15 +99,19 @@ function Entity._new(params)
     dir = params.dir or 0,
     persist = params.persist,
     speed_mod = params.speed_mod or 1,
-    can_move = params.can_move or true,
+    can_move = (params.can_move == nil) or params.can_move,
     inventory = {
       wearing = {},
     },
     appearance = {
-      hair_type = (params.appearance and params.appearance.hair_type) or 0,
-      body_type = (params.appearance and params.appearance.body_type) or 0,
-      hair_hue = (params.appearance and params.appearance.hair_hue) or 0,
-      hair_light = (params.appearance and params.appearance.hair_light) or 0,
+      hair_type = (params.appearance and params.appearance.hair_type) or
+       random(#love.filesystem.getDirectoryItems(hs)) - 1,
+      body_type = (params.appearance and params.appearance.body_type) or
+       random(#love.filesystem.getDirectoryItems(bs)) - 1,
+      hair_hue = (params.appearance and params.appearance.hair_hue) or
+       random(360),
+      hair_light = (params.appearance and params.appearance.hair_light) or
+       random(255),
     },
     _is_object = Entity._is_object,
   }

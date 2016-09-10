@@ -12,6 +12,15 @@ return {
       -- yet, so...
     },
 
+    common_names = {
+      [1] = {
+        'John',
+      },
+      [2] = {
+        'Jane',
+      },
+    },
+
     playable  = true,
     description = [[
 A human.
@@ -27,6 +36,35 @@ Has the most potential, but starts off weak.]],
     sexes = {
       [1] = true,
       [2] = true, -- The ladies still have beards, don't worry.
+    },
+
+    common_names = {
+      [1] = {
+        'Urist',
+        'Gimli',
+
+        -- The seven dwarves were originally nameless.
+        -- Names from the original play:
+        'Blick',
+        'Flick',
+        'Glick',
+        'Plick',
+        'Quee',
+        'Snick',
+        'Whick',
+
+        -- Disney's iconic names:
+        'Doc',
+        'Grumpy',
+        'Happy',
+        'Sleepy',
+        'Bashful',
+        'Sneezy',
+        'Dopey',
+      },
+      [2] = {
+        'Urist', -- yeah, I got nuthin'
+      },
     },
 
     playable  = true,
@@ -52,6 +90,16 @@ Slow, hairy, and usually drunk.]],
       [2] = true,
     },
 
+    common_names = {
+      [1] = {
+        'Legolas',
+        'Cacame',
+      },
+      [2] = {
+        'Galadriel',
+      },
+    },
+
     playable  = true,
     description = [[
 The elves are immortal beings that live in
@@ -70,6 +118,15 @@ Tall, fast, weak, fragile.]],
       [2] = true,
     },
 
+    common_names = {
+      [1] = {
+        'kobold',
+      },
+      [2] = {
+        'kobold',
+      },
+    },
+
     playable  = true, -- joke
     description = [[
 Annoying vermin that steal stuff.
@@ -86,6 +143,15 @@ Tiny, cowardly, stealthy kleptomaniacs.]],
     sexes = {
       [1] = true,
       [2] = true,
+    },
+
+    common_names = {
+      [1] = {
+        'John',
+      },
+      [2] = {
+        'Jane',
+      },
     },
 
     playable  = true,
@@ -108,6 +174,15 @@ Politicians hate them for some reason.]],
     sexes = {
       [1] = true,
       [2] = true,
+    },
+
+    common_names = {
+      [1] = {
+        'NYI',
+      },
+      [2] = {
+        'NYI',
+      },
     },
 
     playable  = true,
@@ -145,6 +220,23 @@ They are infamous pranksters.]],
       [2] = true,
     },
 
+    common_names = {
+      [1] = {
+
+        'Barney',
+        'Puff',
+        'Smaug',
+        'Grima',
+      },
+      [2] = {
+
+        'Naga',
+        'Tiki',
+        'Nagi',
+        'Nowi',
+      },
+    },
+
     playable  = true,
     description = [[
 Long ago, dragons ruled the skies.
@@ -175,6 +267,16 @@ stones.]],
     sexes = {
       [1] = true,
       [2] = true,
+      [3] = true, -- don't ask
+    },
+
+    common_names = {
+      [1] = {
+        'Kit',
+      },
+      [2] = {
+        'Lydia',
+      },
     },
 
     playable  = true,
@@ -210,6 +312,21 @@ Can turn into a fox.]],
       [3] = true,
     },
 
+    common_names = {
+      [0] = {
+        'NYI',
+      },
+      [1] = {
+        'NYI',
+      },
+      [2] = {
+        'NYI',
+      },
+      [3] = {
+        'NYI',
+      },
+    },
+
     playable  = true,
     description = [[
 Shapeshifters.
@@ -238,6 +355,15 @@ if they are discovered.]],
       [2] = true,
     },
 
+    common_names = {
+      [1] = {
+        'Gog',
+      },
+      [2] = {
+        'Gag',
+      },
+    },
+
     playable  = true,
     description = [[
 A goblin is basically a green dwarf.
@@ -257,6 +383,12 @@ is a force to be reckoned with.]],
     adjective = 'demonic',
     sexes = {
       [1] = true,
+    },
+
+    common_names = {
+      [1] = {
+        'Luke', -- short for "Lucifer", aka "Lucy"
+      },
     },
 
     playable  = true,
@@ -284,6 +416,14 @@ The incubus is the male variant.]],
       [2] = true,
     },
 
+    common_names = {
+      [2] = {
+        'Lucy',
+        'Ithaca',
+        'Lilith',
+      },
+    },
+
     playable  = true,
     description = [[
 Long ago, the demons created a race of hellish
@@ -307,6 +447,12 @@ The succubus is the female variant.]],
     adjective = 'demonic',
     sexes = {
       [3] = true,
+    },
+
+    common_names = {
+      [3] = {
+        'Fenoxo', -- Yeah, I've heard of him.
+      },
     },
 
     playable  = true,
@@ -336,6 +482,21 @@ The omnibus is the *ahem* "special" variant.]],
       [2] = true,
       [3] = true,
     },
+
+    common_names = {
+      [0] = {
+        'NYI',
+      },
+      [1] = {
+        'NYI',
+      },
+      [2] = {
+        'NYI',
+      },
+      [3] = {
+        'NYI',
+      },
+    },
   },
 
   [17] = {
@@ -347,6 +508,21 @@ The omnibus is the *ahem* "special" variant.]],
       [1] = true,
       [2] = true,
       [3] = true,
+    },
+
+    common_names = {
+      [0] = {
+        'NYI',
+      },
+      [1] = {
+        'NYI',
+      },
+      [2] = {
+        'NYI',
+      },
+      [3] = {
+        'NYI',
+      },
     },
   },
 }
