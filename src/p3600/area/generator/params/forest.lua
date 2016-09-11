@@ -68,7 +68,17 @@ return function(x, y)
   }
 
   if (x == 1) then
-    p.walls.left = true
+    p.exits.left = 'forest_30_'..tostring(y)
+    p.entrances['forest_30_'..tostring(y)] = {
+      player = {
+        x = 2,
+        y = 10,
+      },
+      follower = {
+        x = 2,
+        y = 11,
+      },
+    }
   else
     p.exits.left = 'forest_'..tostring(x - 1)..'_'..tostring(y)
     p.entrances['forest_'..tostring(x - 1)..'_'..tostring(y)] = {
@@ -84,7 +94,17 @@ return function(x, y)
   end
 
   if (x == forest_maxx) then
-    p.walls.right = true
+    p.exits.left = 'forest_2_'..tostring(y)
+    p.entrances['forest_2_'..tostring(y)] = {
+      player = {
+        x = 2,
+        y = 10,
+      },
+      follower = {
+        x = 2,
+        y = 11,
+      },
+    }
   else
     p.exits.right = 'forest_'..tostring(x + 1)..'_'..tostring(y)
     p.entrances['forest_'..tostring(x + 1)..'_'..tostring(y)] = {
@@ -100,7 +120,17 @@ return function(x, y)
   end
 
   if (y == 1) then
-    p.walls.top = true
+    p.exits.left = 'forest_'..tostring(x)..'_30'
+    p.entrances['forest_'..tostring(x)..'_30'] = {
+      player = {
+        x = 10,
+        y = 2,
+      },
+      follower = {
+        x = 11,
+        y = 2,
+      },
+    }
   else
     p.exits.top = 'forest_'..tostring(x)..'_'..tostring(y - 1)
     p.entrances['forest_'..tostring(x)..'_'..tostring(y - 1)] = {
@@ -116,7 +146,17 @@ return function(x, y)
   end
 
   if (y == forest_maxy) then
-    p.walls.bottom = true
+    p.exits.left = 'forest_'..tostring(x)..'_1'
+    p.entrances['forest_'..tostring(x)..'_1'] = {
+      player = {
+        x = 10,
+        y = 17,
+      },
+      follower = {
+        x = 11,
+        y = 17,
+      },
+    }
   else
     p.exits.bottom = 'forest_'..tostring(x)..'_'..tostring(y + 1)
     p.entrances['forest_'..tostring(x)..'_'..tostring(y + 1)] = {
