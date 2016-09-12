@@ -1,10 +1,9 @@
 return function(name)
   local f
   do
-    local filename = '/save/'..p3600.gstate.entity[0].name..'/p3600/area/'..name
+    local filename = '/save/'..p3600.gstate.entity[0].name..'/p3600/area/'
     love.filesystem.createDirectory(filename)
-    filename = filename..'/data.lua'
-    f = love.filesystem.newFile(filename, 'w')
+    f = love.filesystem.newFile(filename..name..'.lua', 'w')
   end
 
   local params

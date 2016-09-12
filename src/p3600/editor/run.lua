@@ -21,7 +21,7 @@ return function(area_name, full)
   }
 
   if not (area_name == nil) then
-    p3600.state.map = p3600.area[area_name].data
+    p3600.state.map = loadfile('/p3600/area/'..area_name..'.lua')()
   end
 
   p3600.slowness = 0.1

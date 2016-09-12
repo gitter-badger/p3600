@@ -72,6 +72,7 @@ return {
   },
 
   exits = {
+    top = 'west_forest_town_1_2',
     right = 'forest_1_2',
   },
 

@@ -4,11 +4,11 @@ return function(name, edge, ...)
   p3600.clear_love_callbacks()
   p3600.slowness = 0.01
 
-  if not (love.filesystem.exists('/p3600/area/'..name..'/data.lua')) then
+  if not (love.filesystem.exists('/p3600/area/'..name..'.lua')) then
     p3600.area.generator.generate(name)
   end
 
-  local mapdata = loadfile('/p3600/area/'..name..'/data.lua')()
+  local mapdata = loadfile('/p3600/area/'..name..'.lua')()
 
   p3600.state = {
     map = p3600.display.make_map(mapdata),
@@ -24,11 +24,8 @@ return function(name, edge, ...)
 
   local prev_area = p3600.gstate.entity[0].pos.area
 
-  if (p3600.area[name]) then
-    local f = p3600.area[name].onload
-    if (f) then
-      f((prev_area == name), ...)
-    end
+  if (mapdata.onload) then
+    mapdata.onload((prev_area == name), ...)
   end
 
   if not (prev_area == name) then
@@ -46,21 +43,23 @@ return function(name, edge, ...)
         ppos.y = entrance.player.y
         p3600.pull_followers(0, entrance.follower.x, entrance.follower.y)
       elseif (edge == 'top') then
-        ppos.y = mapdata.height - 0.1
+        ppos.y = mapdata.height
         if (mapdata.tiletypes[ppos.y][ppos.x - 1] == 0) then
           p3600.pull_followers(0, ppos.x - 1, ppos.y)
         else
           p3600.pull_followers(0, ppos.x + 1, ppos.y)
         end
+        ppos.y = ppos.y - 0.1
       elseif (edge == 'bottom') then
-        ppos.y = 1.1
+        ppos.y = 1
         if (mapdata.tiletypes[ppos.y][ppos.x - 1] == 0) then
           p3600.pull_followers(0, ppos.x - 1, ppos.y)
         else
           p3600.pull_followers(0, ppos.x + 1, ppos.y)
         end
+        ppos.y = ppos.y + 0.1
       elseif (edge == 'left') then
-        ppos.x = mapdata.width - 0.1
+        ppos.x = mapdata.width
         if
          (mapdata.tiletypes[ppos.y - 1]) and
          (mapdata.tiletypes[ppos.y - 1][ppos.x] == 0)
@@ -69,8 +68,9 @@ return function(name, edge, ...)
         else
           p3600.pull_followers(0, ppos.x, ppos.y + 1)
         end
+        ppos.x = ppos.x - 0.1
       else -- (edge == 'right')
-        ppos.x = 1.1
+        ppos.x = 1
         if
          (mapdata.tiletypes[ppos.y - 1]) and
          (mapdata.tiletypes[ppos.y - 1][ppos.x] == 0)
@@ -79,6 +79,7 @@ return function(name, edge, ...)
         else
           p3600.pull_followers(0, ppos.x, ppos.y + 1)
         end
+        ppos.x = ppos.x + 0.1
       end
     end
 
