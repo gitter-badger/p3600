@@ -1,4 +1,4 @@
-return {
+local d = {
   height = 18,
   width  = 25,
 
@@ -74,6 +74,11 @@ return {
   exits = {
     top = 'west_forest_town_1_2',
     right = 'forest_1_2',
+
+    [3] = {
+      -- [11] =
+      -- [12] =
+    },
   },
 
   entrances = {
@@ -89,4 +94,44 @@ return {
       },
     },
   },
+
+  onload = function(restore)
+    if not (restore) then
+      local guard_1 = p3600.Entity{
+        race = 0,
+      }
+      p3600.gstate.entity[#p3600.gstate.entity + 1] = guard_1
+      guard_1.eid = #p3600.gstate.entity
+      local guard_2 = p3600.Entity{
+        race = 0,
+      }
+      p3600.gstate.entity[#p3600.gstate.entity + 1] = guard_2
+      guard_2.eid = #p3600.gstate.entity
+
+      guard_1.pos = {
+        x = 10,
+        y = 4,
+        area = 'west_forest_town_gate',
+      }
+
+      guard_2.pos = {
+        x = 13,
+        y = 4,
+        area = 'west_forest_town_gate',
+      }
+    end
+  end
 }
+
+if
+ (p3600.gstate) and
+ (p3600.gstate.west_forest_town) and
+ (p3600.gstate.west_forest_town.gate_open)
+then
+ d.fg.data[3][11] = 0
+ d.fg.data[3][12] = 0
+ d.tiletypes[3][11] = 0
+ d.tiletypes[3][12] = 0
+end
+
+return d
