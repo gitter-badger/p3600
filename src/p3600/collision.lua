@@ -63,7 +63,7 @@ return function(_e)
         tiletype = p3600.area[entity.pos.area].data.tiletypes
       end
 
-      if (tiletype[y][x] == 1) then
+      if (tiletype[y] and tiletype[y][x] == 1) then
         return 'obstacle'
       end
     end

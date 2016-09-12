@@ -88,7 +88,7 @@ return function(name)
 
   if (params.always_clear) then
     for y, r in pairs(params.always_clear) do
-      for x, v in pairs(params.always_clear) do
+      for x, v in pairs(r) do
         if (v) then
           tiletypes[y][x] = 0
           fg[y][x] = 0

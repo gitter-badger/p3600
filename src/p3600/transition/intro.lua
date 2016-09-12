@@ -10,7 +10,7 @@ return function()
     to_next_frame = 1.0,
     init_frame = function() -- declared here instead of every 0.5 seconds
       if (p3600.state.frame == 3) then
-        p3600.area.enter('clearing', true)
+        p3600.area.enter('clearing', false, true)
       else
         p3600.state.to_next_frame = 1.0
       end

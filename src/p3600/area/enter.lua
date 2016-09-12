@@ -1,4 +1,4 @@
-return function(name, ...)
+return function(name, edge, ...)
   p3600.unuse_sprites()
 
   p3600.clear_love_callbacks()
@@ -33,7 +33,9 @@ return function(name, ...)
 
   if not (prev_area == name) then
     do
-      p3600.gstate.entity[0].pos.area = name
+      local ppos = p3600.gstate.entity[0].pos
+
+      ppos.area = name
 
       local entrance = mapdata.entrances[prev_area]
 
@@ -41,9 +43,45 @@ return function(name, ...)
         entrance = mapdata.entrances.default
       end
 
-      p3600.gstate.entity[0].pos.x = entrance.player.x
-      p3600.gstate.entity[0].pos.y = entrance.player.y
-      p3600.pull_followers(0, entrance.follower.x, entrance.follower.y)
+      if not (edge) then
+        ppos.x = entrance.player.x
+        ppos.y = entrance.player.y
+        p3600.pull_followers(0, entrance.follower.x, entrance.follower.y)
+      elseif (edge == 'top') then
+        ppos.y = mapdata.height - 1
+        if (mapdata.tiletypes[ppos.y][ppos.x - 1] == 0) then
+          p3600.pull_followers(0, ppos.x - 1, ppos.y)
+        else
+          p3600.pull_followers(0, ppos.x + 1, ppos.y)
+        end
+      elseif (edge == 'bottom') then
+        ppos.y = 2
+        if (mapdata.tiletypes[ppos.y][ppos.x - 1] == 0) then
+          p3600.pull_followers(0, ppos.x - 1, ppos.y)
+        else
+          p3600.pull_followers(0, ppos.x + 1, ppos.y)
+        end
+      elseif (edge == 'left') then
+        ppos.x = mapdata.width - 1
+        if
+         (mapdata.tiletypes[ppos.y - 1]) and
+         (mapdata.tiletypes[ppos.y - 1][ppos.x] == 0)
+        then
+          p3600.pull_followers(0, ppos.x, ppos.y - 1)
+        else
+          p3600.pull_followers(0, ppos.x, ppos.y + 1)
+        end
+      else -- (edge == 'right')
+        ppos.x = 2
+        if
+         (mapdata.tiletypes[ppos.y - 1]) and
+         (mapdata.tiletypes[ppos.y - 1][ppos.x] == 0)
+        then
+          p3600.pull_followers(0, ppos.x, ppos.y - 1)
+        else
+          p3600.pull_followers(0, ppos.x, ppos.y + 1)
+        end
+      end
     end
 
     p3600.clean_other_areas(name)
@@ -120,20 +158,20 @@ return function(name, ...)
         return p3600.area.enter(p3600.state.map.exits[pcy][pcx])
       end
 
-      if (p3600.state.map.exits.top) and (pcy <= 1) then
-        return p3600.area.enter(p3600.state.map.exits.top)
+      if (p3600.state.map.exits.top) and (pcy < 1) then
+        return p3600.area.enter(p3600.state.map.exits.top, 'top')
       end
 
-      if (p3600.state.map.exits.left) and (pcx <= 1) then
-        return p3600.area.enter(p3600.state.map.exits.left)
+      if (p3600.state.map.exits.left) and (pcx < 1) then
+        return p3600.area.enter(p3600.state.map.exits.left, 'left')
       end
 
       if (p3600.state.map.exits.right) and (pcx >= p3600.state.map.width) then
-        return p3600.area.enter(p3600.state.map.exits.right)
+        return p3600.area.enter(p3600.state.map.exits.right, 'right')
       end
 
       if (p3600.state.map.exits.bottom) and (pcy >= p3600.state.map.height) then
-        return p3600.area.enter(p3600.state.map.exits.bottom)
+        return p3600.area.enter(p3600.state.map.exits.bottom, 'bottom')
       end
     end
     for eid, v in pairs(p3600.state.active_entities) do
