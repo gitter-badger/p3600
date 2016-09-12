@@ -1,8 +1,6 @@
 local random = require('math').random
 
 return function()
-  p3600.push_state()
-
   local ch = {
     {
       label = 'What should I do?',
@@ -50,6 +48,43 @@ return function()
 
   p3600.sp_entity[1].dialog.append_misc(ch)
 
+  if
+   (p3600.gstate.entity[1].is_known) and
+   (p3600.state.can_ask_about_animosity)
+  then
+    ch[#ch + 1] = {
+      label = "What's the big deal with shapeshifters?",
+      action = function()
+        return p3600.display.dialog{
+          text = {
+            'Think about it:',
+            'I can pretend to be just about anyone, and',
+            "go places I shouldn't.",
+            "I might see something I shouldn't, and",
+            'tell someone. Shapeshifters make the best',
+            'spies, and humans are terrified that we',
+            'might care about what they do in private.',
+            '',
+            "Personally, I've only spied on one person.",
+            "That person is bad, though, and now I'm",
+            'telling someone.',
+            '',
+            '... But not you. ;3',
+          },
+          choices = {
+            {
+              label = '(back)',
+              action = function()
+                p3600.display.end_dialog()
+                p3600.pop_state()
+              end,
+            },
+          },
+        }
+      end,
+    }
+  end
+
   ch[#ch + 1] = {
     label = 'Nevermind.',
     action = function()
@@ -66,6 +101,8 @@ return function()
       'Did you need something?',
     },
   }
+
+  p3600.push_state()
 
   p3600.display.dialog{
     text = responses[random(#responses)],
