@@ -48,7 +48,7 @@ return function(name)
     for y = 1, params.height, 1 do
       for x = 1, params.width, 1 do
         if
-         (love.math.noise(x, y) < (params.features.trees.density or 0.3))
+         (require('math').random() < (params.features.trees.density or 0.3))
         then
           fg[y][x] = ids[math.random(#ids)]
           tiletypes[y][x] = 1

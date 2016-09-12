@@ -38,12 +38,12 @@ return function(dt)
            (p3600.control_down('right'))
         then
           pc.pos.y = pc.pos.y - (speed / 2)
-          if (p3600.collision(pc) == 'obstacle') then
+          if (p3600.collision(pc).obstacle) then
             pc.pos.y = pc.pos.y + (speed / 2)
           end
         else
           pc.pos.y = pc.pos.y - speed
-          if (p3600.collision(pc) == 'obstacle') then
+          if (p3600.collision(pc).obstacle) then
             pc.pos.y = pc.pos.y + speed
           end
         end
@@ -60,12 +60,12 @@ return function(dt)
            (p3600.control_down('right'))
         then
           pc.pos.y = pc.pos.y + (speed / 2)
-          if (p3600.collision(pc) == 'obstacle') then
+          if (p3600.collision(pc).obstacle) then
             pc.pos.y = pc.pos.y - (speed / 2)
           end
         else
           pc.pos.y = pc.pos.y + speed
-          if (p3600.collision(pc) == 'obstacle') then
+          if (p3600.collision(pc).obstacle) then
             pc.pos.y = pc.pos.y - speed
           end
         end
@@ -81,12 +81,12 @@ return function(dt)
         is_walking = true
         if (p3600.control_down('up')) or (p3600.control_down('down')) then
           pc.pos.x = pc.pos.x - (speed / 2)
-          if (p3600.collision(pc) == 'obstacle') then
+          if (p3600.collision(pc).obstacle) then
             pc.pos.x = pc.pos.x + (speed / 2)
           end
         else
           pc.pos.x = pc.pos.x - speed
-          if (p3600.collision(pc) == 'obstacle') then
+          if (p3600.collision(pc).obstacle) then
             pc.pos.x = pc.pos.x + speed
           end
         end
@@ -103,12 +103,12 @@ return function(dt)
            (p3600.control_down('down'))
         then
           pc.pos.x = pc.pos.x + (speed / 2)
-          if (p3600.collision(pc) == 'obstacle') then
+          if (p3600.collision(pc).obstacle) then
             pc.pos.x = pc.pos.x - (speed / 2)
           end
         else
           pc.pos.x = pc.pos.x + speed
-          if (p3600.collision(pc) == 'obstacle') then
+          if (p3600.collision(pc).obstacle) then
             pc.pos.x = pc.pos.x - speed
           end
         end

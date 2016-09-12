@@ -49,7 +49,6 @@ return function(name, edge, ...)
         else
           p3600.pull_followers(0, ppos.x + 1, ppos.y)
         end
-        ppos.y = ppos.y - 0.1
       elseif (edge == 'bottom') then
         ppos.y = 1
         if (mapdata.tiletypes[ppos.y][ppos.x - 1] == 0) then
@@ -57,7 +56,6 @@ return function(name, edge, ...)
         else
           p3600.pull_followers(0, ppos.x + 1, ppos.y)
         end
-        ppos.y = ppos.y + 0.1
       elseif (edge == 'left') then
         ppos.x = mapdata.width
         if
@@ -68,7 +66,6 @@ return function(name, edge, ...)
         else
           p3600.pull_followers(0, ppos.x, ppos.y + 1)
         end
-        ppos.x = ppos.x - 0.1
       else -- (edge == 'right')
         ppos.x = 1
         if
@@ -79,7 +76,6 @@ return function(name, edge, ...)
         else
           p3600.pull_followers(0, ppos.x, ppos.y + 1)
         end
-        ppos.x = ppos.x + 0.1
       end
     end
 
@@ -165,11 +161,11 @@ return function(name, edge, ...)
         return p3600.area.enter(p3600.state.map.exits.left, 'left')
       end
 
-      if (p3600.state.map.exits.right) and (pcx >= p3600.state.map.width) then
+      if (p3600.state.map.exits.right) and (pcx > p3600.state.map.width) then
         return p3600.area.enter(p3600.state.map.exits.right, 'right')
       end
 
-      if (p3600.state.map.exits.bottom) and (pcy >= p3600.state.map.height) then
+      if (p3600.state.map.exits.bottom) and (pcy > p3600.state.map.height) then
         return p3600.area.enter(p3600.state.map.exits.bottom, 'bottom')
       end
     end

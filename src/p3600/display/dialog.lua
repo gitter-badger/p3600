@@ -47,7 +47,7 @@ return function(data)
   p3600.draw = function()
     if (p3600.state.changed) then
       love.graphics.clear()
-      love.graphics.draw(p3600._dialog_buffer)
+      love.graphics.draw(p3600._dialog_buffer, 0, 0)
       local _p = p3600.state._p
       for y,t in pairs(p3600.state.text) do
         _p(14 + y, 1, t)

@@ -1,6 +1,8 @@
 return function(_e)
   local math = require('math')
 
+  local r = {}
+
   do -- entities
     local x = _e.pos.x
     local y = _e.pos.y
@@ -15,7 +17,8 @@ return function(_e)
     for i, e in pairs(ae) do
       if not (e == _e) then
         if (math.abs(y - e.pos.y) < 1) and (math.abs(x - e.pos.x) < 1) then
-          return 'obstacle'
+          r.entity = true
+          break
         end
       end
     end
@@ -64,16 +67,16 @@ return function(_e)
       end
 
       if (tiletype[y] and tiletype[y][x] == 1) then
-        return 'obstacle'
+        r.obstacle = true
       end
     end
 
     if (recurse < 3) then
       return f(entity, recurse + 1)
-    else
-      return nil
     end
   end
 
-  return f(_e, 0)
+  f(_e, 0)
+
+  return r
 end

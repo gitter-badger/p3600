@@ -5,6 +5,9 @@ function love.run()
   -- set a handler for external libraries that don't require everything they use
   setmetatable(_G, {__index = require('package').loaded})
 
+  -- LOVE provides some better versions of standard functions
+  math.random = love.math.random
+
   -- remove all unneeded global stuff
   bit = nil
   coroutine = nil
