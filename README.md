@@ -36,8 +36,17 @@ Windows is not a valid development platform, so you will never have a
 reason to build from source anyway.
 
 
-What's With The Name?
----------------------
+NaQ (Never-asked Questions)
+---------------------------
+
+### What's With The Name?
 
 Everything else was taken?
 If someone thinks of a better name, let us know.
+
+### When I run the executable version, all my saves are gone/different!
+
+LÖVE uses a different save directory depending on whether or not it is fused.
+The save files should always be compatible, unless you are using a different
+version.
+(The changelog will explicitly state if a version uses a different save format.)
