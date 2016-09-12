@@ -26,6 +26,10 @@ return function()
   do
     local f = love.filesystem.newFile(save_name..'/data.lua', 'w')
 
+    if (p3600.cfg.developer) then
+      f:write("p3600.cfg.developer = true\n\n")
+    end
+
     f:write("return {\n")
     f:write('  gstate = ')
     p3600.serialize(f, p3600.gstate, '  ')
