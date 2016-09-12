@@ -37,32 +37,30 @@ return function(name, edge, ...)
 
       ppos.area = name
 
-      local entrance = mapdata.entrances[prev_area]
-
-      if (entrance == nil) then
-        entrance = mapdata.entrances.default
-      end
-
       if not (edge) then
+        local entrance = mapdata.entrances[prev_area]
+        if (entrance == nil) then
+          entrance = mapdata.entrances.default
+        end
         ppos.x = entrance.player.x
         ppos.y = entrance.player.y
         p3600.pull_followers(0, entrance.follower.x, entrance.follower.y)
       elseif (edge == 'top') then
-        ppos.y = mapdata.height - 1
+        ppos.y = mapdata.height - 0.1
         if (mapdata.tiletypes[ppos.y][ppos.x - 1] == 0) then
           p3600.pull_followers(0, ppos.x - 1, ppos.y)
         else
           p3600.pull_followers(0, ppos.x + 1, ppos.y)
         end
       elseif (edge == 'bottom') then
-        ppos.y = 2
+        ppos.y = 1.1
         if (mapdata.tiletypes[ppos.y][ppos.x - 1] == 0) then
           p3600.pull_followers(0, ppos.x - 1, ppos.y)
         else
           p3600.pull_followers(0, ppos.x + 1, ppos.y)
         end
       elseif (edge == 'left') then
-        ppos.x = mapdata.width - 1
+        ppos.x = mapdata.width - 0.1
         if
          (mapdata.tiletypes[ppos.y - 1]) and
          (mapdata.tiletypes[ppos.y - 1][ppos.x] == 0)
@@ -72,7 +70,7 @@ return function(name, edge, ...)
           p3600.pull_followers(0, ppos.x, ppos.y + 1)
         end
       else -- (edge == 'right')
-        ppos.x = 2
+        ppos.x = 1.1
         if
          (mapdata.tiletypes[ppos.y - 1]) and
          (mapdata.tiletypes[ppos.y - 1][ppos.x] == 0)
