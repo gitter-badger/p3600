@@ -378,6 +378,37 @@ is a force to be reckoned with.]],
   },
 
   [13] = {
+    singular  = 'notabus',
+    plural    = 'notabi',
+    adjective = 'demonic',
+    sexes = {
+      [0] = true,
+    },
+
+    common_names = {
+      [0] = {
+        'Luke',
+      },
+    },
+
+    playable  = true,
+    description = [[
+Long ago, the demons created a race of hellish
+creatures that could survive in the light and
+set them loose on the surface to sow pain and
+suffering. This plan backfired, as when these
+creatures looked upon the light, they fell in
+love with the world.
+
+While they still have demonic tendencies, they
+are not inherently evil.
+
+They are immune to most fire.
+
+The notabus is not a bus.]],
+  },
+
+  [14] = {
     singular  = 'incubus',
     plural    = 'incubi',
     adjective = 'demonic',
@@ -408,7 +439,7 @@ They are immune to most fire.
 The incubus is the male variant.]],
   },
 
-  [14] = {
+  [15] = {
     singular  = 'succubus',
     plural    = 'succubi',
     adjective = 'demonic',
@@ -441,7 +472,7 @@ They are immune to most fire.
 The succubus is the female variant.]],
   },
 
-  [15] = {
+  [16] = {
     singular  = 'omnibus',
     plural    = 'omnibi',
     adjective = 'demonic',
@@ -472,7 +503,7 @@ They are immune to most fire.
 The omnibus is the *ahem* "special" variant.]],
   },
 
-  [16] = {
+  [17] = {
     singular  = 'elemental',
     plural    = 'elementals',
     adjective = 'primordial',
@@ -499,7 +530,7 @@ The omnibus is the *ahem* "special" variant.]],
     },
   },
 
-  [17] = {
+  [18] = {
     singular  = 'diety',
     plural    = 'dieties',
     adjective = 'powerful',
