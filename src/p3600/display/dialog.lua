@@ -12,7 +12,7 @@ return function(data)
 
   if (p3600._dialog_buffer == nil) then
     p3600._dialog_buffer = p3600.display.buffer
-    p3600.display.buffer = love.graphics.newCanvas(800, 600, 'rgb5a1', 0)
+    p3600.display.buffer = love.graphics.newCanvas(320, 240, 'rgb5a1', 0)
   end
 
   p3600.keypressed = function(key)
@@ -54,7 +54,7 @@ return function(data)
       end
 
       do
-        local y = 16 + #p3600.state.text
+        local y = 8 + #p3600.state.text
         if (p3600.state.selection > 1) then
           _p(y, 4, p3600.state.choices[p3600.state.selection - 1].label)
         end

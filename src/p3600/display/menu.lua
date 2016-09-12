@@ -147,9 +147,9 @@ return function(items)
         local offset = 0
 
         for i = p3600.state.top_entry, #p3600.state.menu_items, 1 do
-          if (offset >= (36 - (p3600.state.start_at + 1))) then
+          if (offset >= (15 - (p3600.state.start_at + 1))) then
             love.graphics.setColor(200, 200, 200, 200)
-            p3600.state._p(36, 4, 'vvv')
+            p3600.state._p(15, 4, 'vvv')
             love.graphics.setColor(255, 255, 255, 255)
             break
           end
@@ -174,8 +174,8 @@ return function(items)
               end
               love.graphics.setColor(255, 255, 255, 255)
 
-              love.graphics.draw(p3600.state._menu_cursor, 2 * 16,
-                                 (p3600.state.start_at + 1 + offset) * 16)
+              love.graphics.draw(p3600.state._menu_cursor, 2 * 8,
+                                 (p3600.state.start_at + 1 + offset) * 8)
             else
               if (type(e.label) == 'function') then
                 p3600.state._p(p3600.state.start_at + 1 + offset, 4, e.label())

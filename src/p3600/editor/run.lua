@@ -117,16 +117,16 @@ return function(area_name, full)
           for x, v in pairs(r) do
             if (v == 1) then
               love.graphics.rectangle('line',
-                                      ((x - 1) * 32) + ((32 / 2) - (16 / 2)),
-                                      ((y - 1) * 32) + ((32 / 2) - (16 / 2)),
-                                      16, 16)
+                                      ((x - 1) * 16) + ((16 / 2) - (8 / 2)),
+                                      ((y - 1) * 16) + ((16 / 2) - (8 / 2)),
+                                      8, 8)
             end
           end
         end
       end
 
-      love.graphics.rectangle('line', (p3600.state.selection.x * 32) - 33,
-                              (p3600.state.selection.y * 32) - 33, 34, 34)
+      love.graphics.rectangle('line', (p3600.state.selection.x * 16) - 17,
+                              (p3600.state.selection.y * 16) - 17, 18, 18)
 
       p3600.display.changed = true
       p3600.state.changed = false

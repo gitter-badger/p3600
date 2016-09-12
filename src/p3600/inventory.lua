@@ -52,7 +52,7 @@ return function()
       local mnu = {
         back = p3600.pop_state,
 
-        start_row = 16,
+        start_row = 8,
 
         init = function()
           local itm

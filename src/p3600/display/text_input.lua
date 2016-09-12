@@ -21,7 +21,7 @@ return function(line, column, setstr, initial_string, bg)
   p3600.text_input_buffer_max_sz = #p3600.text_input_buffer
   p3600.text_input_setstr = setstr
   p3600.text_input_old_buffer = p3600.display.buffer
-  p3600.display.buffer = love.graphics.newCanvas(800, 600, 'rgb5a1', 0)
+  p3600.display.buffer = love.graphics.newCanvas(320, 240, 'rgb5a1', 0)
 
   love.keyboard.setTextInput(true)
 
@@ -95,9 +95,9 @@ return function(line, column, setstr, initial_string, bg)
         local r, g, b, a = love.graphics.getColor()
         love.graphics.setColor(p3600.text_input_bg.r, p3600.text_input_bg.g,
                                p3600.text_input_bg.b, p3600.text_input_bg.a)
-        love.graphics.rectangle('fill', p3600.text_input_c * 16,
-                                p3600.text_input_r * 16,
-                                p3600.text_input_buffer_max_sz * 16, 16)
+        love.graphics.rectangle('fill', p3600.text_input_c * 8,
+                                p3600.text_input_r * 8,
+                                p3600.text_input_buffer_max_sz * 8, 8)
         love.graphics.setColor(r, g, b, a)
       end
       p3600.display.print(p3600.text_input_r, p3600.text_input_c,

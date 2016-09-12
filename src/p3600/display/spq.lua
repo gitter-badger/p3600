@@ -6,8 +6,8 @@ return function(id, size)
   local math = require('math')
 
   size = size or 1
-  local row = math.floor(id / 8)
-  local col = id % 8
-  return love.graphics.newQuad(col * 32, row * 32, 32 * size, 32 * size, 256,
+  local row = math.floor(id / 16)
+  local col = id % 16
+  return love.graphics.newQuad(col * 16, row * 16, 16 * size, 16 * size, 256,
                                256)
 end

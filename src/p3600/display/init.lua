@@ -7,7 +7,7 @@ m.buffer = {}
 m.changed = true
 
 -- Automatic values. Don't mess with these.
-m.width = 800
-m.height = 600
+m.width = 320
+m.height = 240
 
 return m

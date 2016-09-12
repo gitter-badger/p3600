@@ -192,16 +192,16 @@ function p3600.init()
     love.graphics.setCanvas()
     if (p3600.display.changed) then
       love.graphics.clear(love.graphics.getBackgroundColor())
-      local ratio_w = p3600.display.width / 800
-      local ratio_h = p3600.display.height / 600
+      local ratio_w = p3600.display.width / 320
+      local ratio_h = p3600.display.height / 240
       local ratio = 0
       if (ratio_w < ratio_h) then
         ratio = ratio_w
       else
         ratio = ratio_h
       end
-      love.graphics.translate((p3600.display.width  / 2) - ((800 * ratio) / 2),
-                              (p3600.display.height / 2) - ((600 * ratio) / 2))
+      love.graphics.translate((p3600.display.width  / 2) - ((320 * ratio) / 2),
+                              (p3600.display.height / 2) - ((240 * ratio) / 2))
       love.graphics.scale(ratio)
       love.graphics.draw(p3600.display.buffer)
     end
@@ -291,7 +291,7 @@ function p3600.init()
     p3600.update(dt)
   end
 
-  p3600.display.buffer = love.graphics.newCanvas(800, 600, 'rgb5a1', 0)
+  p3600.display.buffer = love.graphics.newCanvas(320, 240, 'rgb5a1', 0)
 
   p3600.font = love.graphics.newImageFont('/data/font.tga',
    ' 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`~!@#$%^'..

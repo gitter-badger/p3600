@@ -71,8 +71,8 @@ function love.conf(t)
 
   t.externalstorage = true            -- True to save files (and read from the save directory) in external storage on Android (boolean) 
 
-  t.window.width = 800                -- The window width (number)
-  t.window.height = 600               -- The window height (number)
+  t.window.width = 640                -- The window width (number)
+  t.window.height = 480               -- The window height (number)
   t.window.borderless = false         -- Remove all border visuals from the window (boolean)
   t.window.minwidth = 10              -- Minimum window width (number)
   t.window.minheight = 10             -- Minimum window height (number)

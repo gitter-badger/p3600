@@ -17,8 +17,8 @@ return function(x, y)
 
     floor_ids = {
       1,
-      9,
       17,
+      31,
     },
 
     features = {

@@ -1,6 +1,6 @@
 return {
-  height = 18, -- max is 18
-  width  = 20, -- max is 25
+  height = 18,
+  width  = 20,
 
   bg = {
     spritesheet = 'bg0',

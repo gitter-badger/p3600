@@ -82,5 +82,5 @@ return function(entity)
   entity.spritesheet.hair = love.graphics.newImage(entity.spritesheet.hair)
 
   entity.spritesheet.quad =
-   love.graphics.newQuad(0, 0, 32, 32, 256, 256)
+   love.graphics.newQuad(0, 0, 16, 16, 256, 256)
 end
