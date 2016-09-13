@@ -85,7 +85,10 @@
  </objectgroup>
  <objectgroup name="exits" visible="0">
   <properties>
-   <property name="left" value="forest_3_2"/>
+   <property name="bottom" value="forest_3_3"/>
+   <property name="left" value="forest_2_2"/>
+   <property name="right" value="forest_4_2"/>
+   <property name="top" value="forest_2_1"/>
   </properties>
  </objectgroup>
  <layer name="tiletypes" width="30" height="30" visible="0">
