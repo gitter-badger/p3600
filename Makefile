@@ -7,8 +7,8 @@ ZIP    ?= zip -9 -u -v
 
 dirs  := $(patsubst src/%,p3600/%,$(shell find src -type d))
 files := $(patsubst src/%,p3600/%,$(shell find src -name "*.lua"))
-tmxfiles := $(patsubst src/%.tmx,p3600/%.lua,$(shell find src -name "*.tmx"))
-files += $(tmxfiles)
+tmxfiles := $(patsubst %.tmx,%.lua,$(shell find src -name "*.tmx"))
+files += $(patsubst src/%,p3600/%,$(tmxfiles))
 
 # Jumper lib
 dirs += $(patsubst libs/Jumper/%,p3600/%,$(shell find libs/Jumper/jumper -type d))
