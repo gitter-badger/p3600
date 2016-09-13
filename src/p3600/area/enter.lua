@@ -46,13 +46,13 @@ return function(name, edge, ...)
         ppos.y = entrance.player.y
         p3600.pull_followers(0, entrance.follower.x, entrance.follower.y)
       elseif (edge == 'top') then
-        ppos.y = mapdata.height
+        ppos.y = mapdata.height - 1
         p3600.pull_followers(0, ppos.x, ppos.y)
       elseif (edge == 'bottom') then
         ppos.y = 1
         p3600.pull_followers(0, ppos.x, ppos.y)
       elseif (edge == 'left') then
-        ppos.x = mapdata.width
+        ppos.x = mapdata.width - 1
         p3600.pull_followers(0, ppos.x, ppos.y)
       else -- (edge == 'right')
         ppos.x = 1
@@ -191,6 +191,7 @@ return function(name, edge, ...)
         end
       end
 
+      love.graphics.push()
       p3600.state.map.data:setDrawRange(p3600.state.map.vx * -1,
                                         p3600.state.map.vy * -1,
                                         320, 240)
@@ -206,6 +207,7 @@ return function(name, edge, ...)
 
       p3600.state.rmfg(p3600.state.map)
 
+      love.graphics.pop()
       p3600.display.changed = true
       p3600.state.changed = false
     end
