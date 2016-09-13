@@ -60,12 +60,6 @@ return function()
     p3600.serialize(f, p3600.kb.m, '  ')
     f:write(",\n")
 
-    f:write("\n")
-    f:write("  -- Level Editor\n")
-    f:write('  editor = ')
-    p3600.serialize(f, p3600.kb.e, '  ')
-    f:write(",\n")
-
     f:write("}\n")
 
     f:flush()

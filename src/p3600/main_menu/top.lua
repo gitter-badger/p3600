@@ -24,18 +24,5 @@ return function()
     },
   }
 
-  if (p3600.cfg.developer) then
-    m[#m + 1] = ''
-
-    m[#m + 1] = 'Developer Stuff:'
-
-    m[#m + 1] = {
-      label = 'Area Editor',
-      action = function()
-        p3600.editor.run(nil, true)
-      end
-    }
-  end
-
   p3600.display.menu(m)
 end

@@ -11,6 +11,11 @@ function love.run()
   -- LOVE provides some better versions of standard functions
   math.random = love.math.random
 
+  if not (debug == nil) then
+    debug.gcinfo = gcinfo
+    debug.newproxy = newproxy
+  end
+
   -- remove all unneeded global stuff
   bit = nil
   coroutine = nil
@@ -25,7 +30,7 @@ function love.run()
   gcinfo = nil -- undocumented = non-existant
   newproxy = nil -- also undocumented
 
-  module = require('module')
+  module = require('module') -- *drops mic*
 
   p3600 = require('p3600')
 
@@ -52,18 +57,13 @@ function love.run()
     p3600.cfg = t.p3600
 
     p3600.kb = {
-      e = t.p3600.keybinds.editor,
       w = t.p3600.keybinds.world,
       m = t.p3600.keybinds.menu,
     }
     p3600.cfg.keybinds = nil
   end
 
-  if (arg[2] == 'editor') then
-    p3600.editor.run(arg[3], true)
-  else
-    p3600.main_menu.top()
-  end
+  p3600.main_menu.top()
 
   love.timer.step()
 

@@ -54,16 +54,6 @@ function love.conf(t)
         ['space']  = 'select',
         ['escape'] = 'back',
       },
-
-      editor = {
-        ['up']     = 'up',
-        ['down']   = 'down',
-        ['left']   = 'left',
-        ['right']  = 'right',
-        ['return'] = 'menu',
-        ['space']  = 'repeat',
-        ['escape'] = 'exit',
-      },
     },
   }
 
