@@ -1,7 +1,10 @@
 function love.run()
+  love.graphics.setDefaultFilter('nearest', 'nearest', 0)
+
   loadfile = love.filesystem.load -- seems like a good idea
 
   require('better_package')()
+
   -- set a handler for external libraries that don't require everything they use
   setmetatable(_G, {__index = require('package').loaded})
 
@@ -25,6 +28,12 @@ function love.run()
   module = require('module')
 
   p3600 = require('p3600')
+
+  do -- gc blacklist
+    local package = require('package')
+
+    package.gc_blacklist['sti'] = true -- not actually unsafe
+  end
 
   do
     local os = require('os')

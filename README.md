@@ -19,6 +19,8 @@ Building
 
 Remember to run `git submodule init`, `git submodule update`. :wink:
 
+The makefile is written so that `make -j` is safe.
+
 ### Recommended Method
 Run `make p3600.love`.
 

@@ -1,3 +1,6 @@
+local floor = require('math').floor
+local sti = require('sti')
+
 return function(name, edge, ...)
   p3600.unuse_sprites()
 
@@ -8,7 +11,7 @@ return function(name, edge, ...)
     p3600.area.generator.generate(name)
   end
 
-  local mapdata = loadfile('/p3600/area/'..name..'.lua')()
+  local mapdata = sti('/p3600/area/'..name..'.lua')
 
   p3600.state = {
     map = p3600.display.make_map(mapdata),
@@ -24,8 +27,8 @@ return function(name, edge, ...)
 
   local prev_area = p3600.gstate.entity[0].pos.area
 
-  if (mapdata.onload) then
-    mapdata.onload((prev_area == name), ...)
+  if (love.filesystem.exists('/p3600/area/'..name..'_onload.lua')) then
+    loadfile('/p3600/area/'..name..'_onload.lua')()((prev_area == name), ...)
   end
 
   if not (prev_area == name) then
@@ -44,38 +47,16 @@ return function(name, edge, ...)
         p3600.pull_followers(0, entrance.follower.x, entrance.follower.y)
       elseif (edge == 'top') then
         ppos.y = mapdata.height
-        if (mapdata.tiletypes[ppos.y][ppos.x - 1] == 0) then
-          p3600.pull_followers(0, ppos.x - 1, ppos.y)
-        else
-          p3600.pull_followers(0, ppos.x + 1, ppos.y)
-        end
+        p3600.pull_followers(0, ppos.x, ppos.y)
       elseif (edge == 'bottom') then
         ppos.y = 1
-        if (mapdata.tiletypes[ppos.y][ppos.x - 1] == 0) then
-          p3600.pull_followers(0, ppos.x - 1, ppos.y)
-        else
-          p3600.pull_followers(0, ppos.x + 1, ppos.y)
-        end
+        p3600.pull_followers(0, ppos.x, ppos.y)
       elseif (edge == 'left') then
         ppos.x = mapdata.width
-        if
-         (mapdata.tiletypes[ppos.y - 1]) and
-         (mapdata.tiletypes[ppos.y - 1][ppos.x] == 0)
-        then
-          p3600.pull_followers(0, ppos.x, ppos.y - 1)
-        else
-          p3600.pull_followers(0, ppos.x, ppos.y + 1)
-        end
+        p3600.pull_followers(0, ppos.x, ppos.y)
       else -- (edge == 'right')
         ppos.x = 1
-        if
-         (mapdata.tiletypes[ppos.y - 1]) and
-         (mapdata.tiletypes[ppos.y - 1][ppos.x] == 0)
-        then
-          p3600.pull_followers(0, ppos.x, ppos.y - 1)
-        else
-          p3600.pull_followers(0, ppos.x, ppos.y + 1)
-        end
+        p3600.pull_followers(0, ppos.x, ppos.y)
       end
     end
 
@@ -136,14 +117,14 @@ return function(name, edge, ...)
   end
 
   p3600.update = function(dt)
+    p3600.state.map.data:update(dt)
     p3600.state.update_player(dt)
     do
       local pcx
       local pcy
       do
-        local math = require('math')
-        pcx = math.floor(p3600.gstate.entity[0].pos.x)
-        pcy = math.floor(p3600.gstate.entity[0].pos.y)
+        pcx = floor(p3600.gstate.entity[0].pos.x)
+        pcy = floor(p3600.gstate.entity[0].pos.y)
       end
 
       if
@@ -176,12 +157,55 @@ return function(name, edge, ...)
 
   p3600.draw = function()
     if (p3600.state.changed) then
+      do -- update x
+        local x = p3600.state.map.vx
+        local nx = floor((p3600.gstate.entity[0].pos.x - 1) * 16) - (320 / 2)
+
+        if ((nx + 320) > ((p3600.state.map.width - 1) * 16)) then
+          nx = ((p3600.state.map.width - 1) * 16) - 320
+        end
+
+        if (nx < 0) then
+          nx = 0
+        end
+
+        if not (nx == x) then
+          p3600.state.map.vx = nx
+        end
+      end
+
+      do -- update y
+        local y = p3600.state.map.vy
+        local ny = floor((p3600.gstate.entity[0].pos.y - 1) * 16) - (240 / 2)
+
+        if ((ny + 240) > ((p3600.state.map.height - 1) * 16)) then
+          ny = ((p3600.state.map.height - 1) * 16) - 240
+        end
+
+        if (ny < 0) then
+          ny = 0
+        end
+
+        if not (ny == y) then
+          p3600.state.map.vy = ny
+        end
+      end
+
+      p3600.state.map.data:setDrawRange(p3600.state.map.vx * -1,
+                                        p3600.state.map.vy * -1,
+                                        320, 240)
+      love.graphics.translate(p3600.state.map.vx * -1, p3600.state.map.vy * -1)
+
       love.graphics.clear(love.graphics.getBackgroundColor())
+
       p3600.state.rmbg(p3600.state.map)
+
       for eid, v in pairs(p3600.state.active_entities) do
         p3600.state.re(v)
       end
+
       p3600.state.rmfg(p3600.state.map)
+
       p3600.display.changed = true
       p3600.state.changed = false
     end

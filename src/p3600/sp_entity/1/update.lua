@@ -20,6 +20,9 @@ return function(dt)
           pc.followers = {}
         end
         pc.followers[#pc.followers + 1] = 1
+
+        -- game file must exist on disk before procedural generation starts
+        -- this is as good a place as any to ensure it is saved
         p3600.save_game()
         love.filesystem.mount('/save/'..p3600.gstate.entity[0].name, '/', false)
       end,

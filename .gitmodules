@@ -1,3 +1,6 @@
 [submodule "libs/Jumper"]
 	path = libs/Jumper
 	url = git://github.com/Yonaba/Jumper.git
+[submodule "libs/sti"]
+	path = libs/sti
+	url = git://github.com/karai17/Simple-Tiled-Implementation.git

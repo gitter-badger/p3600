@@ -1,3 +1,3 @@
 return function(map)
-  love.graphics.draw(map.fg)
+  map.data:drawLayer(map.data.layers['fg'])
 end

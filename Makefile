@@ -7,16 +7,29 @@ ZIP    ?= zip -9 -u -v
 
 dirs  := $(patsubst src/%,p3600/%,$(shell find src -type d))
 files := $(patsubst src/%,p3600/%,$(shell find src -name "*.lua"))
+tmxfiles := $(patsubst src/%.tmx,p3600/%.lua,$(shell find src -name "*.tmx"))
+files += $(tmxfiles)
 
 # Jumper lib
 dirs += $(patsubst libs/Jumper/%,p3600/%,$(shell find libs/Jumper/jumper -type d))
 files += $(patsubst libs/Jumper/%,p3600/%,$(shell find libs/Jumper/jumper -name "*.lua"))
 
+# sti lib
+dirs += $(patsubst libs/sti/%,p3600/%,$(shell find libs/sti/sti -type d))
+files += $(patsubst libs/sti/%,p3600/%,$(shell find libs/sti/sti -name "*.lua"))
+
 p3600/%.lua: src/%.lua $(dirs)
 	$(LUAJIT) $< $@
 
+src/%.lua: src/%.tmx
+	tiled --export-map $< $@
+
 # Jumper lib
 p3600/jumper/%.lua: libs/Jumper/jumper/%.lua $(dirs)
+	$(LUAJIT) $< $@
+
+# sti lib
+p3600/sti/%.lua: libs/sti/sti/%.lua $(dirs)
 	$(LUAJIT) $< $@
 
 p3600/conf.lua: src/conf.lua
@@ -34,3 +47,4 @@ p3600.love: $(files)
 	$(ZIP) ../p3600.love -r * -x .gitignore -x '*.md'
 
 .PHONY: all
+.INTERMEDIATE: $(tmxfiles)
