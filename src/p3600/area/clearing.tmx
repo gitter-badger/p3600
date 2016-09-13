@@ -58,12 +58,12 @@
 </data>
  </layer>
  <objectgroup name="entrances" visible="0">
-  <object id="50" name="default_player" gid="1" x="192" y="208" width="16" height="16">
+  <object id="50" name="default/player" gid="1" x="192" y="208" width="16" height="16">
    <properties>
     <property name="dir" type="int" value="1"/>
    </properties>
   </object>
-  <object id="51" name="default_followers" gid="1" x="176" y="208" width="16" height="16">
+  <object id="51" name="default/followers" gid="1" x="176" y="208" width="16" height="16">
    <properties>
     <property name="dir" type="int" value="3"/>
    </properties>
