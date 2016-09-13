@@ -1,6 +1,8 @@
 p3600
 =====
 
+[![Join the chat at https://gitter.im/p3600/Lobby](https://badges.gitter.im/p3600/Lobby.svg)](https://gitter.im/p3600/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 It's a game.
 
 
