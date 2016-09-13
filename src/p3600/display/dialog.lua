@@ -50,11 +50,11 @@ return function(data)
       love.graphics.draw(p3600._dialog_buffer, 0, 0)
       local _p = p3600.state._p
       for y,t in pairs(p3600.state.text) do
-        _p(14 + y, 1, t)
+        _p(1 + y, 1, t)
       end
 
       do
-        local y = 8 + #p3600.state.text
+        local y = 3 + #p3600.state.text
         if (p3600.state.selection > 1) then
           _p(y, 4, p3600.state.choices[p3600.state.selection - 1].label)
         end
